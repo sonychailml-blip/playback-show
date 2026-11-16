@@ -676,10 +676,11 @@ main{overflow-x:clip}
         <label class="opt"><input type="radio" name="what" value="course"><span><b>Курс целиком · с 7 декабря</b><small>12 встреч одним платежом · <span data-price-now></span></small></span></label>
         <label class="opt"><input type="radio" name="what" value="monthly"><span><b>Курс с оплатой по месяцам</b><small>12 встреч · 3 × <span data-price="9500|95"></span>: в декабре, январе и феврале</small></span></label>
       </fieldset>
-      <div class="field"><label for="f-name">Ваше имя</label><input id="f-name" type="text" autocomplete="name" placeholder="Как к вам обращаться"></div>
-      <div class="field"><label for="f-contact">Email или Telegram</label><input id="f-contact" type="text" placeholder="you@mail.com или @username"></div>
-      <div><button class="btn arrow" type="submit">Включить камеру<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F0F0F" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></div>
-      <p class="note" id="form-note" role="status">После записи пришлём ссылку на оплату и Zoom. Сейчас это предпросмотр: форма пока никуда не отправляется.</p>
+      <div class="field"><label for="f-name">Ваше имя</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="120"></div>
+      <div class="field"><label for="f-contact">Email или Telegram</label><input id="f-contact" name="contact" type="text" placeholder="you@mail.com или @username" required maxlength="160"></div>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <div><button class="btn arrow" type="submit" id="f-send">Включить камеру<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F0F0F" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></div>
+      <p class="note" id="form-note" role="status" aria-live="polite">После записи мы напишем вам в течение дня и пришлём ссылку на оплату и Zoom.</p>
     </form>
   </div>
 </section>
@@ -916,9 +917,26 @@ main{overflow-x:clip}
   all('[data-pick]', function (a) { a.addEventListener('click', function () { var r = document.querySelector('input[name="what"][value="' + a.getAttribute('data-pick') + '"]'); if (r) r.checked = true; }); });
 
   /* ---------- form ---------- */
-  document.getElementById('join-form').addEventListener('submit', function (e) {
+  var FORM_URL = 'https://script.google.com/macros/s/AKfycbzKJtZ-RIpgM0kSjO_ekMdvAPp_Kj2ehYwUMNuM8jemb1_s1KSxWuqmQlAurObeF1hDpA/exec';
+  var WHAT = { intro: 'Вводное занятие 30 ноября', course: 'Курс целиком', monthly: 'Курс, оплата по месяцам' };
+  var form = document.getElementById('join-form'), note = document.getElementById('form-note'), sendBtn = document.getElementById('f-send');
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    document.getElementById('form-note').textContent = 'Спасибо! На рабочем сайте здесь откроется оплата. Сейчас это предпросмотр, данные никуда не отправляются.';
+    var name = form.elements.name.value.trim(), contact = form.elements.contact.value.trim();
+    if (!name || !contact) { note.textContent = 'Пожалуйста, напишите имя и email или Telegram, чтобы мы могли с вами связаться.'; (name ? form.elements.contact : form.elements.name).focus(); return; }
+    if (form.elements.website.value) return;   // bot trap
+    var picked = form.querySelector('input[name="what"]:checked');
+    var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (err) {}
+    var body = new URLSearchParams({ what: WHAT[picked ? picked.value : 'intro'] || '', name: name, contact: contact, cur: cur === 'eur' ? 'EUR' : 'RUB', tz: tz });
+    sendBtn.disabled = true; note.textContent = 'Отправляем…';
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: body })
+      .then(function () {
+        form.reset(); note.textContent = 'Спасибо, ' + name + '! Заявка получена. Мы напишем вам в течение дня и пришлём ссылку на оплату и Zoom.';
+      })
+      .catch(function () {
+        note.textContent = 'Не получилось отправить заявку. Проверьте интернет и попробуйте ещё раз — или напишите нам в Telegram (контакты внизу страницы).';
+      })
+      .then(function () { sendBtn.disabled = false; });
   });
 
   /* ---------- scroll reveal ---------- */
