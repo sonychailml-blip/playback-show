@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Онлайн-курс плейбэк-театра в Zoom: 12 встреч с Сандрой Розановой и Михаилом Чайлахяном. Вводное занятие 30 ноября.">
+<title>playback.show — онлайн-курс плейбэк-театра</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: D3 "Свет рампы" — white page, warm-beige plates, one signal yellow, Inter Tight headings; the stage with curtains and nine Zoom windows is the hero moment; globe and marquee run as the world band */
+:root{
+  --ink:#0F0F0F; --y:#F5B82E; --y-soft:#FCEBC0; --soft:#F5F3EE; --white:#FFFFFF; --page:#FFFFFF;
+  --y-ink:#0F0F0F; --y-glow:rgba(245,184,46,.6); --glow:#F5B82E; --dot:#F5B82E; --emo:#F5B82E;
+  --hot:#F5B82E; --hot-ink:#0F0F0F; --a3:#F5B82E; --a3-ink:#0F0F0F; --a3-2:#F8CA5C;
+  --dark-block:#0F0F0F; --dark2:#1F1E1C; --dark3:#2A2826; --on-dark-accent:#F5B82E; --on-dark-muted:#D9D5CC;
+  --twi:#FCEFCB; --globe:#F5B82E;
+  --text2:#3B3833; --muted:#625E57; --line:#E2DED5; --dash:#B5AFA3;
+  --head:"Inter Tight", "Inter", system-ui, sans-serif; --body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden}
+a{color:var(--ink)} a:hover{color:#4A4740}
+img,video{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(24px, env(safe-area-inset-left, 0px));padding-right:max(24px, env(safe-area-inset-right, 0px))}
+section{scroll-margin-top:90px}
+.sec{padding-top:150px}
+.kick{margin:0;display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600;color:var(--muted)}
+.kick::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--dot);flex:0 0 10px}
+.h2{margin:18px 0 0;font-family:var(--head);font-weight:600;font-size:clamp(34px,4.6vw,60px);line-height:1.03;letter-spacing:-0.04em;text-wrap:balance}
+.lead{margin:0;font-size:19px;line-height:1.65;color:var(--text2)}
+.btn{display:inline-flex;gap:12px;align-items:center;justify-content:center;min-height:60px;padding:0 28px;border:0;border-radius:999px;background:var(--ink);color:var(--white);font:inherit;font-weight:600;font-size:17px;text-decoration:none;cursor:pointer;transition:transform .15s}
+.btn:hover{color:var(--white);transform:translateY(-1px)}
+.btn.arrow{padding-right:10px}
+.btn .ar{width:42px;height:42px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center}
+.btn.y{background:var(--y);color:var(--ink)} .btn.y:hover{color:var(--ink)}
+.btn.soft{background:var(--soft);color:var(--ink)} .btn.soft:hover{color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--soft);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.chip.y{background:var(--y)} .chip.k{background:var(--dark-block);color:var(--white)}
+
+/* header */
+.top{position:sticky;top:0;z-index:60;background:var(--page);backdrop-filter:saturate(1.2) blur(8px)}
+.top-in{border-top:3px double var(--ink);border-bottom:1px solid var(--ink);padding:16px 0;min-height:88px;display:flex;gap:14px 28px;align-items:center;justify-content:space-between;position:relative}
+.season{flex:1 1 180px;white-space:nowrap;display:flex;gap:10px;align-items:center;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.season::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--y)}
+.brand{flex:0 0 auto;display:flex;gap:12px;align-items:center;text-decoration:none}
+.mark{width:56px;height:56px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center}
+.mark i{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;width:26px}
+.mark b{height:10px;border-radius:2px;background:var(--ink)} .mark b:last-child{background:var(--white)}
+.brand{gap:14px}
+.brand span{font-family:var(--head);font-weight:600;font-size:26px;letter-spacing:-.03em}
+.nav{flex:0 0 auto;display:flex;flex-wrap:nowrap;gap:8px 22px;align-items:center;justify-content:flex-end;font-size:16px;font-weight:500}
+.nav a{text-decoration:none}
+.nav .cta{display:inline-flex;align-items:center;min-height:50px;padding:0 26px;border-radius:999px;background:var(--y);font-weight:600}
+.burger{display:none;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center}
+.burger span{position:relative;display:block;width:22px;height:2px;background:var(--ink);transition:background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:22px;height:2px;background:var(--ink);transition:transform .2s}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.top.open .burger span{background:transparent}
+.top.open .burger span::before{transform:translateY(7px) rotate(45deg)}
+.top.open .burger span::after{transform:translateY(-7px) rotate(-45deg)}
+
+/* hero */
+.hero{padding-top:110px}
+.hero .kick{font-size:16px;font-weight:500;margin-bottom:32px}
+h1{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(44px,7.6vw,116px);line-height:.98;letter-spacing:-0.045em}
+.gl{position:relative;z-index:0;display:inline-block}
+.gl::after{content:"";position:absolute;z-index:-1;left:50%;top:52%;width:1.3em;height:1.3em;border-radius:50%;background:var(--glow);transform:translate(-50%,-50%);animation:glow 5s ease-in-out infinite}
+@keyframes glow{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.06)}}
+.hero-row{margin-top:56px;display:flex;flex-wrap:wrap;gap:32px 64px;align-items:flex-end;justify-content:space-between}
+.hero-row .lead{max-width:560px;font-size:20px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* hero v3 */
+.hero h1{font-size:clamp(40px,6.4vw,100px);line-height:1;letter-spacing:-0.045em;max-width:1100px}
+.slogan{margin:30px 0 0;font-family:var(--head);font-weight:600;font-size:clamp(24px,3vw,40px);line-height:1.15;letter-spacing:-.03em;color:var(--text2)}
+/* wide stage: windows run nearly full width */
+.stage-wide{padding-top:64px}
+.stg2{position:relative;overflow:hidden;margin:0 max(2vw,16px);border-radius:clamp(20px,2.6vw,40px);background:var(--soft);padding:clamp(12px,1.6vw,24px)}
+.stg2 .spot{width:60%}
+.stg2{padding-top:clamp(26px,2.6vw,40px)}
+.cam{position:absolute;left:50%;top:clamp(9px,.95vw,15px);width:clamp(8px,.75vw,12px);height:clamp(8px,.75vw,12px);margin-left:calc(clamp(8px,.75vw,12px) / -2);border-radius:50%;background:var(--ink);z-index:2}
+@media (min-width:1400px){.stg2 .tile{aspect-ratio:16/9}}
+.under{padding:0 24px}
+.pb-what{display:flex;flex-wrap:wrap;gap:24px 72px;padding-top:56px;border-top:1px solid var(--line)}
+.pb-l{flex:1 1 320px}
+.pb-r{flex:1.4 1 480px;display:flex;flex-direction:column;gap:20px}
+/* offer */
+.offer{display:flex;flex-wrap:wrap;gap:20px}
+.off-course{flex:3 1 520px;padding:clamp(28px,3.6vw,48px);border-radius:32px;background:var(--dark-block);color:var(--white);display:flex;flex-direction:column;gap:18px}
+.off-course .s,.off-intro .s{margin:0;font-size:15px;font-weight:600}
+.off-course .s{color:var(--on-dark-accent)}
+.off-course h2{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(28px,3.4vw,46px);line-height:1.05;letter-spacing:-.04em}
+.facts{margin:6px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px;font-size:16px;line-height:1.4;color:var(--on-dark-muted)}
+.facts b{display:block;color:var(--white);font-size:20px;font-weight:600}
+.off-row{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:auto;padding-top:10px}
+.from{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;line-height:1}
+.from small{display:block;margin-top:6px;font-family:var(--body);font-size:14px;font-weight:500;letter-spacing:0;color:var(--on-dark-muted)}
+.off-intro{flex:2 1 340px;padding:clamp(28px,3.6vw,48px);border-radius:32px;background:var(--y);color:var(--y-ink);display:flex;flex-direction:column;gap:14px}
+.off-intro h3{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(26px,2.8vw,36px);line-height:1.08;letter-spacing:-.03em}
+.off-intro p{margin:0;font-size:17px;line-height:1.5}
+.off-intro .small{font-size:15px;opacity:.85}
+.who-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px}
+.who-list li{padding:18px 22px;border-radius:22px;background:var(--soft);font-size:17px;line-height:1.5;color:var(--text2)}
+.who-list b{color:var(--ink);font-weight:600}
+.learn{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.learn-cap{margin:0 0 18px;font-family:var(--head);font-weight:600;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.03em}
+.lc p{font-size:17px!important;line-height:1.55!important}
+.lc{padding:26px;border-radius:26px;background:var(--soft);display:flex;flex-direction:column;gap:10px}
+.lc h3{margin:6px 0 0;font-family:var(--head);font-weight:600;font-size:22px;letter-spacing:-.02em}
+.lc p{margin:0;font-size:16px;line-height:1.5;color:var(--text2)}
+.lc .num{flex:none;width:44px;height:44px;color:var(--y-ink)}
+.off-intro .intro-price{font-family:var(--head);font-weight:600;font-size:34px;letter-spacing:-.03em;line-height:1}
+/* stage */
+.stgsec{padding-top:88px}
+.stg{position:relative;overflow:hidden;border-radius:36px;background:var(--soft);padding:clamp(64px,7vw,96px) clamp(40px,10vw,128px) clamp(52px,5.6vw,72px)}
+.drw{position:absolute;top:0;bottom:0;width:clamp(30px,8.4vw,108px);z-index:1}
+.drw.l{left:0}.drw.r{right:0;transform:scaleX(-1)}
+.drw svg{width:100%;height:100%}
+.drape{animation:sway 6s ease-in-out infinite;transform-origin:0 0}
+@keyframes sway{0%,100%{transform:skewX(0deg)}50%{transform:skewX(-1.2deg)}}
+.drw .tie{position:absolute;left:30%;top:55%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--y)}
+.valance{position:absolute;left:0;right:0;top:0;z-index:2}
+.valance div:first-child{height:clamp(26px,3.2vw,38px);background:var(--white);border-bottom:1.5px solid var(--ink)}
+.valance div:last-child{height:20px;background:radial-gradient(circle at 50% 0,#FFFFFF 0 58%,#0F0F0F 59% 62%,rgba(0,0,0,0) 63%) repeat-x;background-size:40px 20px}
+.spot{position:absolute;left:50%;top:52%;width:70%;aspect-ratio:1/1;border-radius:50%;background:var(--y-soft);transform:translate(-50%,-50%);z-index:0}
+.stage{position:relative;z-index:1}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(6px,1.3vw,16px)}
+.tile{position:relative;overflow:hidden;aspect-ratio:16/10;border-radius:clamp(10px,1.5vw,20px);background:var(--white);color:var(--ink);box-shadow:0 10px 24px rgba(15,15,15,.06);display:flex;align-items:center;justify-content:center;transition:background-color 1s,color 1s}
+.tile.night{background:var(--ink);color:var(--white)} .tile.twi{background:var(--twi)}
+.tile img,.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.phr{margin:0;padding:0 9%;text-align:center;font-family:var(--head);font-weight:600;font-size:clamp(10px,1.45vw,19px);line-height:1.2;letter-spacing:-.02em}
+.you{position:absolute;inset:8px;border-radius:12px;border:2px dashed var(--y);display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;text-align:center;padding:0 8%;color:inherit;text-decoration:none;font-family:var(--head);font-weight:600;font-size:clamp(10px,1.35vw,18px);line-height:1.2}
+.you:hover{color:inherit}
+.you b{font-size:1.6em;line-height:1;font-weight:600}
+.tp{position:absolute;right:7px;top:7px;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--ink);font-size:clamp(8px,.95vw,12px);font-weight:600;font-variant-numeric:tabular-nums;z-index:1}
+.tl{position:absolute;left:7px;bottom:7px;padding:2px 9px;border-radius:999px;background:var(--soft);color:var(--ink);font-size:clamp(8px,1vw,12px);font-weight:500;z-index:1}
+.eqb{position:absolute;left:7px;top:7px;display:flex;gap:2px;align-items:flex-end;height:18px;padding:3px 7px;border-radius:999px;background:var(--y);z-index:1}
+.eqb i{display:block;width:3px;height:100%;background:var(--ink);transform-origin:50% 100%;animation:eq 1.1s ease-in-out infinite}
+.eqb i:nth-child(2){animation-delay:.3s}.eqb i:nth-child(3){animation-delay:.15s}.eqb i:nth-child(4){animation-delay:.45s}
+@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.speaking{animation:speak 2s ease-out infinite}
+@keyframes speak{0%,100%{box-shadow:0 0 0 0 var(--y-glow)}50%{box-shadow:0 0 0 14px transparent}}
+.fade{animation:fade .8s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fly{position:absolute;inset:0;pointer-events:none;z-index:2}
+.e{position:absolute;width:clamp(14px,2.2vw,28px);height:clamp(14px,2.2vw,28px);opacity:0;animation-duration:5.8s;animation-timing-function:linear;animation-iteration-count:infinite}
+.e svg{width:100%;height:100%;display:block}
+.e.once{animation-iteration-count:1;animation-duration:2.6s}
+.r1{animation-name:r1}.r2{animation-name:r2;animation-delay:.7s}.r3{animation-name:r3;animation-delay:1.4s}.r4{animation-name:r4;animation-delay:2.1s}.r5{animation-name:r5;animation-delay:2.8s}.r6{animation-name:r6;animation-delay:3.5s}.r7{animation-name:r7;animation-delay:4.2s}.r8{animation-name:r8;animation-delay:4.9s}
+.e.once{animation-delay:0s}
+@keyframes r1{0%{left:50%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:36%;top:24%;transform:translate(-50%,-50%) scale(1.15)}85%{opacity:1}100%{left:16.5%;top:16.5%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes r2{0%{left:50%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:64%;top:24%;transform:translate(-50%,-50%) scale(1.15)}85%{opacity:1}100%{left:83.5%;top:16.5%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes r3{0%{left:50%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:36%;top:76%;transform:translate(-50%,-50%) scale(1.15)}85%{opacity:1}100%{left:16.5%;top:83.5%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes r4{0%{left:50%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:64%;top:76%;transform:translate(-50%,-50%) scale(1.15)}85%{opacity:1}100%{left:83.5%;top:83.5%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes r5{0%{left:16.5%;top:83.5%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:26%;top:38%;transform:translate(-50%,-50%) scale(1.15)}85%{opacity:1}100%{left:50%;top:16.5%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes r6{0%{left:83.5%;top:83.5%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:72%;top:62%;transform:translate(-50%,-50%) scale(1.15)}85%{opacity:1}100%{left:50%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes r7{0%{left:83.5%;top:16.5%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:70%;top:40%;transform:translate(-50%,-50%) scale(1.15)}85%{opacity:1}100%{left:50%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes r8{0%{left:16.5%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}50%{left:50%;top:30%;transform:translate(-50%,-50%) scale(1.2)}85%{opacity:1}100%{left:83.5%;top:50%;opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes up{0%{opacity:0;transform:translate(-50%,0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(-50%,-260px) scale(1.3)}}
+.bar-wrap{position:relative;z-index:3;margin-top:-30px;display:flex;justify-content:center}
+.bar{position:relative;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding:7px;border-radius:999px;background:var(--ink);box-shadow:0 16px 36px rgba(15,15,15,.18)}
+.ic{width:46px;height:46px;border-radius:50%;border:0;background:var(--dark3);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.ic:hover{filter:brightness(1.25)}
+.bar .btn{min-height:46px;padding:0 24px;font-size:15px}
+.heart{position:absolute;left:50%;bottom:30px;width:30px;height:30px;pointer-events:none;animation:up 2.4s ease-out forwards}
+.heart svg{width:100%;height:100%;display:block}
+.under{margin:32px 0 0;text-align:center;font-size:16px;color:var(--muted)}
+.under strong{color:var(--ink);font-weight:600}
+.chips{margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+
+/* what */
+.what{display:flex;flex-wrap:wrap;gap:40px 80px}
+.what .a{flex:1 1 300px}
+.what .b{flex:1 1 560px;display:flex;flex-direction:column;gap:24px}
+.big{margin:0;font-family:var(--head);font-weight:500;font-size:clamp(22px,2.3vw,28px);line-height:1.4;letter-spacing:-.015em}
+.what img{flex:1 1 100%;width:100%;aspect-ratio:16/7;object-fit:cover;object-position:50% 30%;border-radius:32px;background:var(--soft)}
+
+/* marquee */
+.mq-head{margin-top:140px}
+.mq-head h2{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(24px,2.6vw,36px);letter-spacing:-.03em;line-height:1.15}
+.mq-head p{margin:8px 0 0;color:var(--muted);font-size:16px}
+.marquee{margin-top:24px;background:var(--soft);overflow:hidden;padding:30px 0}
+.track{display:flex;width:max-content;animation:marq 58s linear infinite}
+.track .item{display:inline-flex;gap:12px;align-items:center;padding-right:56px;white-space:nowrap}
+.track .city{font-family:var(--head);font-weight:600;font-size:30px;letter-spacing:-.03em}
+.track .t{display:inline-flex;gap:6px;align-items:center;padding:4px 12px;border-radius:999px;background:var(--white);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.track .t.dark{background:var(--ink);color:var(--white)}
+.track .part{font-size:15px;color:var(--muted)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* world */
+.world{display:flex;flex-wrap:wrap;gap:56px 72px;align-items:center;margin-top:56px}
+.globe{flex:1 1 440px;max-width:560px;width:100%;margin:0 auto;position:relative;aspect-ratio:1;will-change:transform}
+.globe canvas{position:absolute;top:0;left:-16%;width:132%;height:100%}
+.globe .flat{position:absolute;inset:0;width:100%;height:100%}
+.globe.live .flat{display:none}
+.cards{flex:1 1 380px;display:flex;flex-direction:column;gap:16px}
+.card{display:flex;gap:20px;align-items:flex-start;padding:26px;border-radius:26px;background:var(--soft)}
+.num{flex:0 0 44px;height:44px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:700;font-size:17px}
+.card h3{margin:2px 0 6px;font-family:var(--head);font-weight:600;font-size:22px;letter-spacing:-.02em}
+.card p{margin:0;font-size:17px;line-height:1.55;color:var(--text2)}
+
+.what-text{flex:1 1 420px;display:flex;flex-direction:column;gap:22px}
+.roles-mini{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin:0 0 40px;padding:18px 22px;border-radius:26px;background:var(--soft)}
+.roles-mini>p{flex:1 1 100%;margin:0;font-size:15px;font-weight:600;color:var(--muted)}
+.rm{flex:1 1 240px;display:flex;gap:14px;align-items:center}
+.rm-ic{flex:0 0 64px;width:64px;height:64px;border-radius:50%;background:var(--y);color:var(--y-ink);display:flex;align-items:center;justify-content:center}
+.rm-ic svg{width:38px;height:38px;stroke-width:2.2}
+.rm .rm-ic{color:#FFFFFF}
+.rm span{display:flex;flex-direction:column;font-size:15px;line-height:1.35;color:var(--text2)}
+.rm b{font-family:var(--head);font-weight:600;font-size:19px;color:var(--ink);letter-spacing:-.02em}
+.more-wrap{display:flex;justify-content:center;margin-top:12px}
+.rev.hide{display:none}
+.intro-price{margin:-6px 0 0;font-family:var(--head);font-weight:600;font-size:30px;letter-spacing:-.03em}
+.step2c{flex:1 1 460px;padding:36px;border-radius:32px;background:var(--dark-block);color:var(--white);display:flex;flex-direction:column;gap:12px}
+.step2c .s{margin:0;font-size:15px;font-weight:600;color:var(--on-dark-accent)}
+.step2c .t{margin:0 0 10px;font-family:var(--head);font-weight:600;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.03em}
+.prow{display:flex;gap:12px 20px;align-items:center;justify-content:space-between;padding:16px 20px;border-radius:20px;background:var(--dark2)}
+.prow.hot{background:var(--hot);color:var(--hot-ink)}
+.prow>span{display:flex;flex-direction:column;line-height:1.3}
+.prow b{font-weight:600;font-size:17px}
+.prow small{font-size:14px;opacity:.75}
+.prow strong{font-family:var(--head);font-weight:600;font-size:clamp(26px,2.6vw,34px);letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.prow strong small{font-size:.55em;opacity:1}
+/* roles */
+.head-row{display:flex;flex-wrap:wrap;gap:16px 48px;align-items:flex-end;justify-content:space-between;margin-bottom:56px}
+.head-row .lead{max-width:380px;font-size:18px}
+.roles{display:flex;flex-wrap:wrap;gap:20px}
+.role{flex:1 1 250px;padding:14px 14px 28px;border-radius:30px;background:var(--soft);display:flex;flex-direction:column;gap:18px}
+.role .ph{position:relative;aspect-ratio:1/1;border-radius:22px;overflow:hidden;background:var(--white)}
+.role .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.role h3{margin:0 14px;font-family:var(--head);font-weight:600;font-size:26px;letter-spacing:-.03em}
+.role p{margin:0 14px;font-size:16px;line-height:1.55;color:var(--text2)}
+
+/* programme */
+.prog{margin:0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+.prog li{display:grid;grid-template-columns:72px 150px minmax(0,1fr);gap:8px 24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+.prog .n{font-family:var(--head);font-weight:600;font-size:30px;letter-spacing:-.03em;color:var(--dash)}
+.prog .d{font-weight:600;font-variant-numeric:tabular-nums}
+.prog h3{margin:0;font-family:var(--head);font-weight:600;font-size:21px;letter-spacing:-.02em}
+.prog p{margin:4px 0 0;font-size:16px;color:var(--text2);grid-column:3}
+.prog li.fin .n{color:var(--ink)}
+.prog li.fin{background:linear-gradient(90deg,var(--dot) 0 6px,transparent 6px)}
+.prog li.fin{padding-left:18px;margin-left:-18px}
+.prog li.brk{display:block;padding:12px 0;font-size:15px;color:var(--muted);text-align:center}
+.prog-note{margin:20px 0 0;font-size:15px;color:var(--muted)}
+
+/* hosts */
+.hosts{display:flex;flex-wrap:wrap;gap:64px 80px;margin-top:56px}
+.host{flex:1 1 420px;display:flex;flex-direction:column;gap:18px}
+.host.two{padding-top:72px}
+.portrait{position:relative;width:100%;max-width:440px;aspect-ratio:1/1}
+.portrait span{position:absolute;width:92%;aspect-ratio:1/1;border-radius:50%;background:var(--y)}
+.portrait img{position:absolute;top:0;width:88%;aspect-ratio:1/1;border-radius:50%;object-fit:cover;background:var(--soft)}
+.host h3{margin:0;font-family:var(--head);font-weight:600;font-size:34px;letter-spacing:-.03em}
+.host .role-l{margin:-6px 0 0;font-size:16px;font-weight:600}
+.host p{margin:0;max-width:440px;font-size:18px;line-height:1.6;color:var(--text2)}
+.host blockquote{margin:6px 0 0;max-width:440px;padding-left:16px;border-left:3px solid var(--dot);font-size:16px;line-height:1.55;color:var(--text2)}
+.host blockquote b{white-space:nowrap;font-weight:600;color:var(--ink)}
+
+/* stats */
+.stats{display:flex;flex-wrap:wrap;gap:16px}
+.stat{flex:1 1 220px;padding:32px;border-radius:30px;background:var(--soft)}
+.stat b{display:block;font-family:var(--head);font-weight:600;font-size:clamp(56px,6vw,72px);line-height:1;letter-spacing:-.05em}
+.stat p{margin:14px 0 0;font-size:17px;color:var(--text2)}
+.stat.y{background:var(--y)} .stat.y p{color:var(--ink)}
+.stat.k{background:var(--ink);color:var(--white)} .stat.k p{color:#D9D5CC}
+
+/* reviews */
+.quote-big{position:relative;margin:56px 0;padding:clamp(28px,5vw,64px);border-radius:36px;background:var(--a3);color:var(--a3-ink);overflow:hidden}
+.quote-big::before{content:"";position:absolute;right:-6%;top:-30%;width:46%;aspect-ratio:1/1;border-radius:50%;background:var(--a3-2)}
+.quote-big p{position:relative;margin:0;max-width:900px;font-family:var(--head);font-weight:500;font-size:clamp(24px,3.2vw,42px);line-height:1.22;letter-spacing:-.03em}
+.quote-big p+p{margin-top:24px;font-family:var(--body);font-size:17px;font-weight:600;letter-spacing:0}
+.revs{columns:320px 3;column-gap:20px}
+.rev{break-inside:avoid;margin:0 0 20px;padding:30px;border-radius:30px;background:var(--soft);display:flex;flex-direction:column;gap:18px}
+.rev.acc{background:var(--a3);color:var(--a3-ink)}
+.rev .qm{width:48px;height:48px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:700;font-size:34px;line-height:1;padding-top:12px}
+.rev.acc .qm{background:var(--white)}
+.rev .txt{margin:0;font-size:17px;line-height:1.55;white-space:pre-line}
+.rev.short .txt{font-family:var(--head);font-weight:500;font-size:24px}
+.rev .more{align-self:flex-start;min-height:44px;padding:0 18px;border:0;border-radius:999px;background:var(--white);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.rev .who{display:flex;gap:12px;align-items:center;padding-top:16px;border-top:1px solid var(--line)}
+.rev.acc .who{border-top-color:rgba(15,15,15,.2)}
+.rev .ava{flex:0 0 40px;height:40px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:700;font-size:16px}
+.rev .who span{display:flex;flex-direction:column} .rev .who strong{font-weight:600;font-size:16px} .rev .who small{font-size:14px;color:var(--text2)}
+
+/* start + price */
+.steps{display:flex;flex-wrap:wrap;gap:20px;margin-top:56px}
+.step1{flex:1 1 400px;padding:36px;border-radius:32px;background:var(--y);display:flex;flex-direction:column;gap:18px}
+.step1 .s{margin:0;font-size:15px;font-weight:600}
+.step1 .date{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(48px,6vw,80px);line-height:.95;letter-spacing:-.05em}
+.step1 ul{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:18px;line-height:1.4}
+.step1 li{position:relative;padding-left:20px}
+.step1 li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.times{flex:1 1 460px;padding:36px;border-radius:32px;background:var(--soft);display:flex;flex-direction:column}
+.times .cap{margin:0 0 10px;font-size:15px;font-weight:600;color:var(--text2)}
+.trow{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.trow .c{font-family:var(--head);font-weight:600;font-size:22px;letter-spacing:-.02em}
+.trow .v{display:flex;gap:12px;align-items:baseline}
+.trow small{font-size:14px;color:var(--muted)}
+.trow b{font-family:var(--head);font-weight:600;font-size:26px;font-variant-numeric:tabular-nums}
+.trow.me{margin-top:16px;padding:16px 20px;border:0;border-radius:20px;background:var(--white)}
+.step2{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;padding:36px;border-radius:32px;background:var(--ink);color:var(--white)}
+.step2 .l{flex:1 1 320px;display:flex;flex-direction:column;gap:10px}
+.step2 .s{margin:0;font-size:15px;font-weight:600;color:var(--y)}
+.step2 .t{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(28px,3.4vw,42px);line-height:1.05;letter-spacing:-.04em}
+.step2 ul{flex:1 1 380px;margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px;font-size:16px;line-height:1.4;color:var(--on-dark-muted)}
+.step2 strong{display:block;color:var(--white);font-size:19px;font-weight:600}
+
+.price-head{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-end;justify-content:space-between;margin:18px 0 48px}
+.cur{display:inline-flex;padding:4px;border-radius:999px;background:var(--soft)}
+.cur button{min-width:64px;min-height:44px;padding:0 18px;border:0;border-radius:999px;background:transparent;font:inherit;font-weight:600;font-size:16px;cursor:pointer;color:var(--ink)}
+.cur button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.prices{display:flex;flex-wrap:wrap;gap:20px}
+.price{flex:1 1 250px;padding:32px;border-radius:30px;background:var(--soft);display:flex;flex-direction:column;gap:14px}
+.price.hot{background:var(--y)}
+.price .nm{margin:0;font-size:15px;font-weight:600;color:var(--text2)}
+.price.hot .nm{color:var(--ink)}
+.price .sum{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(40px,4vw,54px);line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.price .sum small{font-size:.42em;letter-spacing:-.01em}
+.price p{margin:0;font-size:16px;line-height:1.5;color:var(--text2)}
+.price.hot p{color:var(--ink)}
+.price .tag{align-self:flex-start;padding:4px 12px;border-radius:999px;background:var(--ink);color:var(--white);font-size:13px;font-weight:600}
+.intro-line{margin-top:20px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;padding:26px 32px;border-radius:30px;border:2px dashed var(--y)}
+.intro-line p{margin:0;font-size:18px}
+.intro-line b{font-family:var(--head);font-weight:600;font-size:24px;letter-spacing:-.02em}
+.price-note{margin:16px 0 0;font-size:15px;color:var(--muted)}
+
+/* faq */
+.faq{max-width:900px}
+.qa{display:flex;flex-direction:column;gap:12px;margin-top:48px}
+.qa details{border-radius:24px;background:var(--soft)}
+.qa summary{list-style:none;display:flex;gap:16px;align-items:center;justify-content:space-between;min-height:64px;padding:18px 24px;cursor:pointer;font-family:var(--head);font-weight:600;font-size:20px;letter-spacing:-.02em}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";flex:0 0 36px;height:36px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--body);font-size:22px;font-weight:500}
+.qa details[open] summary::after{content:"−";background:var(--y)}
+.qa p{margin:0;padding:0 24px 22px;font-size:17px;line-height:1.6;color:var(--text2);white-space:pre-line}
+
+/* telegram + join */
+.tg{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;padding:36px 40px;border-radius:32px;background:var(--dark-block);color:var(--white)}
+.tg p{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.03em}
+.join{display:flex;flex-wrap:wrap;gap:48px 72px;align-items:stretch;padding:clamp(24px,4vw,48px);border-radius:40px;background:var(--soft)}
+.join-pic{flex:1 1 420px;position:relative;overflow:hidden;min-height:360px;border-radius:28px;background:var(--white)}
+.join-pic img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.join-pic .drw{width:16%}
+.join-pic .rod{position:absolute;left:0;right:0;top:0;height:26px;border-bottom:1.5px solid var(--ink);background:var(--white)}
+.join-pic .badge{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:max-content;max-width:76%;margin:0;padding:10px 20px;border-radius:999px;background:var(--y);text-align:center;font-family:var(--head);font-weight:600;font-size:clamp(14px,1.8vw,20px);letter-spacing:-.02em}
+.form{flex:1 1 380px;display:flex;flex-direction:column;gap:20px}
+.form .q{margin:0;font-family:var(--head);font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-.03em}
+.opts{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;border:0}
+.opts legend{font-size:14px;font-weight:600;margin-bottom:8px}
+.opt{display:flex;gap:14px;align-items:center;padding:14px 18px;border-radius:20px;background:var(--white);border:2px solid transparent;cursor:pointer}
+.opt:has(input:checked){border-color:var(--ink)}
+.opt input{width:20px;height:20px;margin:0;accent-color:var(--ink);flex:0 0 20px}
+.opt>span{display:flex;flex-direction:column;line-height:1.35} .opt b{font-weight:600} .opt small{font-size:14px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-size:14px;font-weight:600}
+.field input{font:inherit;font-size:17px;padding:16px 20px;border:1px solid #D6D1C6;border-radius:999px;background:var(--white);color:var(--ink);width:100%}
+.field input::placeholder{color:#8C877E}
+.note{margin:0;font-size:14px;color:var(--muted)}
+
+footer .wrap{padding-top:28px;padding-bottom:40px}
+.foot{border-top:1px solid var(--line);padding-top:28px;display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between;font-size:15px}
+.foot b{font-family:var(--head);font-weight:600;font-size:18px}
+.contacts{margin-bottom:56px;padding:clamp(28px,3.6vw,44px);border-radius:32px;background:var(--soft)}
+.ct-h{margin:0 0 24px;font-family:var(--head);font-weight:600;font-size:clamp(24px,2.8vw,36px);letter-spacing:-.03em;line-height:1.1}
+.ct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.ct{display:flex;flex-direction:column;gap:10px;padding:22px 24px;border-radius:24px;background:var(--white)}
+.ct b{font-family:var(--head);font-weight:600;font-size:21px;letter-spacing:-.02em}
+.ct a{display:inline-flex;align-items:center;min-height:44px;align-self:flex-start;padding:0 18px;border-radius:999px;background:var(--soft);font-weight:600;font-size:16px;text-decoration:none;font-variant-numeric:tabular-nums}
+.ct a:hover{background:var(--y);color:var(--y-ink)}
+.foot nav{display:flex;flex-wrap:wrap;gap:12px 28px}
+.foot a{text-decoration:none}
+.stk{display:none}
+
+
+/* colour themes (preview switcher) */
+[data-theme="electric"]{--ink:#171525;--y:#C7FF35;--y-ink:#171525;--y-soft:#ECFFC0;--y-glow:rgba(199,255,53,.75);--glow:#C7FF35;--dot:#6638E8;--emo:#FF6B59;--hot:#C7FF35;--hot-ink:#171525;--a3:#FF6B59;--a3-ink:#171525;--a3-2:#FF8E80;--dark-block:#6638E8;--dark2:#5326D0;--dark3:#2C2A3F;--on-dark-accent:#C7FF35;--on-dark-muted:#E2DBFF;--soft:#F7F5EF;--twi:#ECFFC0;--globe:#C7FF35;--text2:#3A3850;--muted:#6B6880;--line:#E4E1EC;--dash:#A9A5BA}
+[data-theme="violet"]{--ink:#171525;--y:#6638E8;--y-ink:#FFFFFF;--y-soft:#E9E2FF;--y-glow:rgba(102,56,232,.55);--glow:#C7FF35;--dot:#6638E8;--emo:#FF6B59;--hot:#C7FF35;--hot-ink:#171525;--a3:#C7FF35;--a3-ink:#171525;--a3-2:#D9FF73;--dark-block:#171525;--dark2:#26233A;--dark3:#34314A;--on-dark-accent:#C7FF35;--on-dark-muted:#CFCBE0;--soft:#F7F5EF;--twi:#E9E2FF;--globe:#9C80F5;--text2:#3A3850;--muted:#6B6880;--line:#E4E1EC;--dash:#A9A5BA}
+[data-theme="coral"]{--ink:#171525;--y:#FF6B59;--y-ink:#171525;--y-soft:#FFE2DD;--y-glow:rgba(255,107,89,.6);--glow:#FF6B59;--dot:#FF6B59;--emo:#6638E8;--hot:#C7FF35;--hot-ink:#171525;--a3:#6638E8;--a3-ink:#FFFFFF;--a3-2:#7A52EE;--dark-block:#171525;--dark2:#26233A;--dark3:#34314A;--on-dark-accent:#FF6B59;--on-dark-muted:#CFCBE0;--soft:#F7F5EF;--twi:#FFE2DD;--globe:#FF6B59;--text2:#3A3850;--muted:#6B6880;--line:#E4E1EC;--dash:#A9A5BA}
+.btn.y,.nav .cta,.chip.y,.step1,.join-pic .badge,.qa details[open] summary::after,.mark{color:var(--y-ink)}
+.btn.y:hover,.nav .cta:hover{color:var(--y-ink)}
+.btn .ar svg{stroke:var(--y-ink)}
+.eqb i{background:var(--y-ink)}
+.step1 li::before{background:var(--y-ink)}
+.rev .qm{color:var(--y-ink)}
+.tile .you{border-color:var(--dot)}
+.theme-sw{position:fixed;left:16px;bottom:16px;z-index:70;display:flex;gap:6px;align-items:center;padding:6px 8px 6px 14px;border-radius:999px;background:var(--white);box-shadow:0 8px 28px rgba(15,15,15,.16);font-size:13px;font-weight:600}
+.theme-sw button{display:flex;align-items:center;gap:3px;min-height:40px;padding:0 10px;border:2px solid transparent;border-radius:999px;background:transparent;cursor:pointer;font:inherit;font-size:13px;color:var(--ink)}
+.theme-sw button[aria-pressed="true"]{border-color:var(--ink)}
+.theme-sw i{display:block;width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.theme-sw .nm{margin-left:4px}
+@media (max-width:640px){.theme-sw{left:8px;right:8px;bottom:84px;justify-content:center;padding:4px 6px}.theme-sw .nm,.theme-sw .lb{display:none}}
+/* scroll reveal (only when JS turned it on) */
+.js-anim [data-r]{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js-anim [data-r].in{opacity:1;transform:none}
+main{overflow-x:clip}
+
+@media (max-width:1360px){.season{display:none}}
+@media (max-width:1100px){
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;padding:6px 0 18px;background:var(--white);border-bottom:1px solid var(--ink);font-size:18px}
+  .nav a{padding:13px 0;border-top:1px solid var(--line)}
+  .nav .cta{justify-content:center;margin-top:10px;border:0}
+  .top.open .nav{display:flex}
+  .burger{display:flex}
+  .top-in{min-height:72px;padding:10px 0}
+  .mark{width:46px;height:46px}
+  .brand span{font-size:22px}
+  .season{display:none}
+  .top-in{justify-content:space-between}
+}
+@media (max-width:640px){
+  .sec{padding-top:104px}
+  .hero{padding-top:64px}
+  .stgsec{padding-left:12px!important;padding-right:12px!important}
+  .stg{padding:54px 22px 42px;border-radius:24px}
+  .drw{width:18px}
+  .tl{left:3px;bottom:3px;padding:0 5px;font-size:8px;font-weight:600}
+  .tl .x{display:none}
+  .tp{top:3px;right:3px;padding:0 4px;font-size:8px}
+  .phr{font-size:8.5px;padding:0 5%;line-height:1.15}
+  .eqb{left:3px;top:3px;height:12px;padding:2px 4px}
+  .you{inset:3px;font-size:8.5px}
+  .bar{gap:4px}
+  .ic{width:40px;height:40px}
+  .prog li{grid-template-columns:44px minmax(0,1fr)}
+  .prog .d{grid-column:2}
+  .prog h3,.prog p{grid-column:2}
+  .prog .n{grid-row:span 3;font-size:24px}
+  .host.two{padding-top:0}
+  .step2 ul{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr;gap:12px}
+  .stg2{margin:0 10px;padding:20px 8px 8px}
+  .cam{top:7px}
+  .bar-wrap{margin-top:10px}
+  .off-course,.off-intro{border-radius:24px}
+  .tg{padding:28px}
+  footer .wrap{padding-bottom:110px}
+  .stk{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));background:linear-gradient(rgba(255,255,255,0),#FFFFFF 40%)}
+  .stk .btn{width:100%;min-height:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .speaking,.fade,.eqb i,.track,.drape,.gl::after,.heart{animation:none}
+  .e{display:none}
+}
+</style>
+</head>
+<body>
+
+
+<script>(function(){try{var t=(location.search.match(/[?&]gamma=(\w+)/)||[])[1]||localStorage.getItem('pbo-theme');if(t&&t!=='rampa')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim');}catch(e){}})();</script>
+
+<header class="top"><div class="wrap"><div class="top-in">
+  <a class="brand" href="#top" aria-label="playback.show — в начало"><span class="mark" aria-hidden="true"><i><b></b><b></b><b></b><b></b></i></span><span>playback.show</span></a>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+  <nav class="nav" id="site-nav" aria-label="Разделы">
+    <a href="#what">Что это</a>
+    <a href="#programme">Программа</a>
+    <a href="#hosts">Ведущие</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#price">Стоимость</a>
+    <a href="#faq">Вопросы</a>
+    <a class="cta" href="#join">Записаться</a>
+  </nav>
+</div></div></header>
+
+<main id="top">
+<section class="wrap hero">
+  <h1>Онлайн-курс плейбэк‑театра. Играем в&nbsp;<span class="gl">Zoom</span></h1>
+  <p class="slogan">Занавес открывается. Камеры включены.</p>
+</section>
+
+<section class="stage-wide" aria-label="Онлайн-сцена курса">
+  <div class="stg2">
+    <span class="cam" aria-hidden="true"></span>
+    <div class="spot" aria-hidden="true"></div>
+    <div class="stage">
+      <div class="grid" id="grid" aria-label="Окна Zoom: ведущие и участники курса из разных стран"></div>
+    </div>
+  </div>
+  <div class="bar-wrap">
+    <div class="bar" id="bar">
+      <span class="ic" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+      <span class="ic" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg></span>
+      <button class="ic" id="send-heart" type="button" aria-label="Отправить сердце на сцену"><svg width="19" height="19" viewBox="0 0 24 24" style="fill:var(--emo)" aria-hidden="true"><path d="M12 20 C 2 13, 2 6, 7 4.5 C 9.5 3.8, 11.3 5.5, 12 7 C 12.7 5.5, 14.5 3.8, 17 4.5 C 22 6, 22 13, 12 20 Z"/></svg></button>
+      <a class="btn y" href="#offer">Записаться</a>
+    </div>
+  </div>
+  <p class="under">Ведущие и участники курса: <strong data-cityline>6 стран · 5 часовых поясов</strong> · одна сцена</p>
+</section>
+
+<section class="wrap" id="what" style="padding-top:88px;scroll-margin-top:100px">
+  <div class="pb-what">
+    <div class="pb-l">
+      <p class="kick" data-r>Что такое плейбэк-театр</p>
+      <h2 class="h2" data-r>Театр, в котором играют ваши истории</h2>
+    </div>
+    <div class="pb-r">
+      <p class="big" data-r>Зритель рассказывает случай из своей жизни — смешной, трогательный или совсем обычный. Актёры и музыкант тут же, без репетиций и сценария, превращают его в сцену и возвращают рассказчику.</p>
+      <p class="lead" data-r style="--d:.1s">Ведущий помогает рассказать историю и передаёт её актёрам. Каждая сцена случается один раз и только для тех, кто сейчас в зале. Здесь не нужно уметь «играть роль» — важнее слушать, откликаться и доверять партнёрам.</p>
+      <p class="lead" data-r style="--d:.2s">Плейбэк придумали в 1975 году в США, и сегодня его играют в десятках стран — на сценах, в школах, компаниях и онлайн.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="offer" style="padding-top:72px;scroll-margin-top:90px">
+  <div class="offer">
+    <div class="off-course" data-r>
+      <p class="s">Онлайн-курс плейбэк-театра</p>
+      <h2>12 встреч в Zoom — от первой игры до своего выступления</h2>
+      <ul class="facts">
+        <li><b>с 7 декабря</b>старт курса</li>
+        <li><b>по понедельникам</b>16:00 по Москве · у вас <span data-course-local>16:00</span></li>
+        <li><b>1,5 часа</b>каждая встреча, раз в неделю</li>
+        <li><b>выступление</b>для зрителей в финале</li>
+      </ul>
+      <div class="off-row">
+        <p class="from">от <span data-price="22000|220"></span><small>при записи до 30 ноября</small></p>
+        <a class="btn y" href="#join" data-pick="course">Записаться на курс</a>
+      </div>
+    </div>
+    <div class="off-intro" data-r style="--d:.12s">
+      <p class="s">Не уверены? Сначала попробуйте</p>
+      <h3>Вводное занятие · 30 ноября</h3>
+      <p>16:00 по Москве · у вас <strong data-intro-local>16:00</strong> · 1,5 часа в Zoom. Опыт не нужен.</p>
+      <p class="intro-price"><span data-price="1000|10"></span></p>
+      <p class="small">Если после него запишетесь на курс до 7 декабря, эта сумма вычитается из стоимости курса.</p>
+      <div class="off-row"><a class="btn arrow" href="#join" data-pick="intro">Записаться на вводное<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F0F0F" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><span class="chip k" data-countdown hidden></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sec" id="world">
+  <p class="kick" data-r>01 · Онлайн</p>
+  <h2 class="h2" data-r>Плейбэк в Zoom — сцена размером с планету</h2>
+  <div class="world">
+    <div class="globe" id="globe">
+      <svg class="flat" viewBox="0 0 440 440" role="img" aria-label="Глобус: ведущие и участники из Батуми, Монтевидео, Москвы, Еревана, Белграда, Берлина, Нью-Йорка, Буэнос-Айреса, Нячанга и Бали" fill="none"><circle cx="220" cy="220" r="200" style="fill:var(--globe)"/><circle cx="283" cy="189" r="8" fill="#FFFFFF" stroke="#0F0F0F" stroke-width="2"/><text x="296" y="185" fill="#0F0F0F" font-size="14" font-weight="700">Батуми</text><circle cx="95" cy="375" r="7" fill="#FFFFFF" stroke="#0F0F0F" stroke-width="2"/><text x="108" y="396" fill="#0F0F0F" font-size="14" font-weight="700">Монтевидео</text></svg>
+    </div>
+    <div class="what-text">
+      <p class="big" data-r>Онлайн всё так же — только вы можете играть, оставаясь дома.</p>
+      <p class="lead" data-r style="--d:.1s">К нам приходят люди из разных стран — и с очень разным опытом:</p>
+      <ul class="who-list">
+        <li data-r style="--d:.15s"><b>Новички.</b> Никогда не играли плейбэк и даже не выходили на сцену — и это нормальный старт.</li>
+        <li data-r style="--d:.2s"><b>Те, кто играет плейбэк вживую.</b> Хотят попробовать онлайн-формат и понять, как он устроен изнутри.</li>
+        <li data-r style="--d:.25s"><b>Театры и команды.</b> Хотят играть онлайн со своей группой и собирать зрителей из любого города.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Во сколько занятия в городах участников">
+  <div class="wrap mq-head"><h2 data-r>Одна встреча — разные часовые пояса</h2><p data-r style="--d:.1s">По понедельникам в 16:00 по Москве. У кого-то утро, у кого-то вечер. У вас это <strong data-course-local>16:00</strong>.</p></div>
+  <div class="marquee"><div class="track" id="track"></div></div>
+</section>
+
+<section class="wrap sec" id="programme">
+  <p class="kick" data-r>02 · Программа</p>
+  <div class="head-row">
+    <h2 class="h2" data-r>Что будет на курсе</h2>
+    <p class="lead" data-r>12 встреч по 1,5 часа, раз в неделю по понедельникам, с 7 декабря. Время — 16:00 по Москве, у вас это <strong data-course-local>16:00</strong>.</p>
+  </div>
+  <div class="roles-mini" data-r>
+    <p>За курс вы побываете в каждой роли:</p>
+    <div class="rm"><span class="rm-ic"><svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="4.5"/><path d="M3.5 26c.8-5 3.8-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/><path d="M19 5.5h9.5v7H24l-3 3v-3h-2z"/></svg></span><span><b>Рассказчик</b>тот, чья история звучит сегодня</span></div>
+    <div class="rm"><span class="rm-ic"><svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="10" r="4.5"/><path d="M8.5 26c.8-5 3.8-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/><path d="M4 8.5a6 6 0 0 1 0 5"/><path d="M27 7l3 4-3 4"/><path d="M22.5 11H30"/></svg></span><span><b>Ведущий</b>слушает рассказчика и передаёт историю актёрам</span></div>
+    <div class="rm"><span class="rm-ic"><svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="11" r="3.8"/><circle cx="23" cy="11" r="3.8"/><path d="M2.5 25c.7-4.3 3.2-6.5 6.5-6.5s5.8 2.2 6.5 6.5"/><path d="M16.5 25c.7-4.3 3.2-6.5 6.5-6.5s5.8 2.2 6.5 6.5"/><path d="M13.5 5.5l2.5-2 2.5 2" /></svg></span><span><b>Актёры</b>играют вместе, находясь врозь</span></div>
+  </div>
+  <p class="learn-cap" data-r>Из чего состоит каждая встреча</p>
+  <div class="learn">
+    <div class="lc" data-r><span class="num">1</span><h3>Разминка</h3><p>Актёрская и телесная: помогает расслабиться, отпустить дневные заботы и включить фантазию. Мы переключаемся в творческое состояние и оказываемся здесь и сейчас.</p></div>
+    <div class="lc" data-r style="--d:.1s"><span class="num">2</span><h3>Истории из жизни</h3><p>Время поделиться тем, что происходит с вами сейчас: радостью, тревогой, случаем из детства или вчерашнего дня. Рассказанное становится легче — а для группы это материал для игры.</p></div>
+    <div class="lc" data-r style="--d:.2s"><span class="num">3</span><h3>Игра на онлайн-сцене</h3><p>На каждой встрече мы играем: превращаем истории в сцены прямо в окнах Zoom под живую музыку. Шаг за шагом — к своему выступлению для зрителей.</p></div>
+  </div>
+</section>
+
+<section class="wrap sec" id="hosts">
+  <p class="kick" data-r>03 · Ведущие</p>
+  <h2 class="h2" data-r>В свете рампы — ваши ведущие</h2>
+  <p class="lead" data-r style="margin-top:24px;max-width:640px">Михаил — в Батуми, Сандра — в Монтевидео. Между ними океан, а сцена одна: у Миши сейчас <strong data-now="Asia/Tbilisi">--:--</strong>, у Сандры — <strong data-now="America/Montevideo">--:--</strong>.</p>
+  <div class="hosts">
+    <div class="host" data-r>
+      <div class="portrait"><span style="left:8%;top:4%"></span><img src="mikhail.jpg" alt="Михаил Чайлахян с гитарой" style="left:0;object-position:50% 30%" loading="lazy"></div>
+      <p class="chip" style="align-self:flex-start;margin:10px 0 0">Батуми · <span data-now="Asia/Tbilisi">--:--</span></p>
+      <h3>Михаил Чайлахян</h3>
+      <p class="role-l">Ведущий курса · музыкант плейбэк-театра</p>
+      <p>Музыкант плейбэк-театра Playback01 и участник батумского плейбэк-театра Friday. На каждой встрече курса играет вживую: музыка подхватывает историю и помогает актёрам её услышать.</p>
+      <blockquote>«Музыка во время игры — это отдельный восторг! Никогда не понимала — это Миша подстраивается под игру, или игра под Мишу» <b>— Анастасия, Венгрия</b></blockquote>
+    </div>
+    <div class="host two" data-r style="--d:.12s">
+      <div class="portrait"><span style="left:0;top:6%"></span><img src="sandra.jpg" alt="Сандра Розанова за ноутбуком" style="right:0;object-position:50% 24%" loading="lazy"></div>
+      <p class="chip" style="align-self:flex-start;margin:10px 0 0">Монтевидео · <span data-now="America/Montevideo">--:--</span></p>
+      <h3>Сандра Розанова</h3>
+      <p class="role-l">Ведущая курса · актриса и тренер плейбэк-театра</p>
+      <p>Больше 10 лет в плейбэке. Актриса Playback01, соосновательница русскоязычного плейбэк-театра во Вьетнаме, ведёт Playback Core Training и онлайн-мастерские. Психолог и клиент-центрированный психотерапевт.</p>
+      <p>В обучении соединяет импровизацию с вниманием к каждому участнику: помогает освоить сцену, слышать чужие истории и найти свой способ играть.</p>
+      <blockquote>«Сандра создаёт удивительно безопасное пространство, где не страшно быть собой» <b>— Марина Куликова, Словакия</b></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sec" id="reviews">
+  <p class="kick" data-r>04 · Отзывы</p>
+  <h2 class="h2" data-r>Говорят те, кто уже вышел на сцену</h2>
+  <div class="quote-big" data-r>
+    <p>«Группа онлайн для меня — про ценную и уникальную возможность пробовать присоединиться к миру театра и плейбэка даже там, где его нет физически»</p>
+    <p>Татьяна, Вьетнам · участница онлайн-потока</p>
+  </div>
+  <div class="revs" id="revs"></div>
+  <div class="more-wrap"><button type="button" class="btn soft" id="more-revs" hidden>Ещё отзывы</button></div>
+</section>
+
+<section class="wrap sec" id="price">
+  <p class="kick" data-r>05 · Стоимость</p>
+  <div class="price-head">
+    <h2 class="h2" data-r style="margin:0">Сколько стоит курс</h2>
+    <div class="cur" role="group" aria-label="Валюта">
+      <button type="button" data-set-cur="rub" aria-pressed="true">₽</button>
+      <button type="button" data-set-cur="eur" aria-pressed="false">€</button>
+    </div>
+  </div>
+  <div class="prices">
+    <div class="price hot" data-r>
+      <span class="tag">до 30 ноября</span>
+      <p class="nm">Ранняя запись</p>
+      <p class="sum" data-price="22000|220"></p>
+      <p>Весь курс, 12 встреч. Цена действует до вводного занятия включительно.</p>
+    </div>
+    <div class="price" data-r style="--d:.1s">
+      <p class="nm">Весь курс</p>
+      <p class="sum" data-price="25000|250"></p>
+      <p>12 встреч с 7 декабря, выступление и разбор. Одним платежом.</p>
+    </div>
+    <div class="price" data-r style="--d:.2s">
+      <p class="nm">По частям</p>
+      <p class="sum"><small>3 × </small><span data-price="9500|95"></span></p>
+      <p>Три платежа: в декабре, январе и феврале.</p>
+    </div>
+  </div>
+  <div class="intro-line" data-r>
+    <p><b>Вводное занятие 30 ноября — <span data-price="1000|10"></span></b><br>Если после него запишетесь на курс до 7 декабря, эта сумма вычитается из стоимости курса.</p>
+    <a class="btn" href="#join" data-pick="intro">Записаться на вводное</a>
+  </div>
+  <p class="price-note">Из России — в рублях, из других стран — в евро. [Способы оплаты и условия возврата уточняются.]</p>
+</section>
+
+<section class="wrap sec faq" id="faq">
+  <p class="kick" data-r>06 · Вопросы</p>
+  <h2 class="h2" data-r>Частые вопросы</h2>
+  <div class="qa">
+    <details data-r><summary>Нужен ли актёрский опыт?</summary><p>Нет. Курс для тех, кто никогда не выходил на сцену. Важно только желание слышать других, фантазировать и пробовать — остальному научимся вместе, шаг за шагом.</p></details>
+    <details data-r><summary>Обязательно ли после вводного идти на курс?</summary><p>Нет. Вводное занятие нужно, чтобы попробовать и решить. Если откликнется и вы запишетесь на курс до 7 декабря, его стоимость вычитается из цены курса.</p></details>
+    <details data-r><summary>Что нужно для занятий?</summary><p>Только Zoom с включённой камерой. Подключайтесь из дома — лучше с компьютера (ноутбука, планшета) там, где вам удобно двигаться в кадре.</p></details>
+    <details data-r><summary>Как играть вместе, если все в разных странах?</summary><p>Формы плейбэка адаптированы под Zoom: камера становится сценой, окна — партнёрами, а живая музыка Михаила связывает всех в одну историю. Ведущие объясняют, как играть каждую форму, и помогают сыграться с первых встреч.</p></details>
+    <details data-r><summary>Как оплатить из России и из других стран?</summary><p>[Способы оплаты в рублях и в евро]</p></details>
+  </div>
+</section>
+
+<section class="wrap" id="join" style="padding-top:120px;padding-bottom:80px">
+  <div class="join">
+    <div class="join-pic" data-r>
+      <img src="group.jpg" alt="Актёры плейбэк-театра с ноутбуками" loading="lazy">
+      <p class="badge">Ваш выход — из любой точки мира</p>
+    </div>
+    <form class="form" id="join-form" novalidate data-r style="--d:.12s">
+      <p class="q">Начните с вводного занятия — или сразу записывайтесь на курс.</p>
+      <fieldset class="opts">
+        <legend>Куда записаться</legend>
+        <label class="opt"><input type="radio" name="what" value="intro" checked><span><b>Вводное занятие · 30 ноября</b><small>16:00 по Москве · у вас <span data-intro-local>16:00</span> · <span data-price="1000|10"></span></small></span></label>
+        <label class="opt"><input type="radio" name="what" value="course"><span><b>Курс целиком · с 7 декабря</b><small>12 встреч одним платежом · <span data-price-now></span></small></span></label>
+        <label class="opt"><input type="radio" name="what" value="monthly"><span><b>Курс с оплатой по месяцам</b><small>12 встреч · 3 × <span data-price="9500|95"></span>: в декабре, январе и феврале</small></span></label>
+      </fieldset>
+      <div class="field"><label for="f-name">Ваше имя</label><input id="f-name" type="text" autocomplete="name" placeholder="Как к вам обращаться"></div>
+      <div class="field"><label for="f-contact">Email или Telegram</label><input id="f-contact" type="text" placeholder="you@mail.com или @username"></div>
+      <div><button class="btn arrow" type="submit">Включить камеру<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F0F0F" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></div>
+      <p class="note" id="form-note" role="status">После записи пришлём ссылку на оплату и Zoom. Сейчас это предпросмотр: форма пока никуда не отправляется.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <div class="contacts" data-r>
+    <p class="ct-h">Остались вопросы? Напишите нам</p>
+    <div class="ct-grid">
+      <div class="ct"><b>Сандра Розанова</b><a href="https://t.me/sandra_playback" target="_blank" rel="noopener">Telegram · @sandra_playback</a><a href="https://wa.me/79801251558" target="_blank" rel="noopener">WhatsApp · +7 980 125-15-58</a></div>
+      <div class="ct"><b>Михаил Чайлахян</b><a href="https://t.me/mimihaail" target="_blank" rel="noopener">Telegram · @mimihaail</a><a href="https://wa.me/995595047031" target="_blank" rel="noopener">WhatsApp · +995 595 047 031</a></div>
+    </div>
+  </div>
+  <div class="foot">
+    <b>Плейбэк онлайн · playback.show</b>
+    <nav aria-label="Ссылки"><a href="#top">Наверх ↑</a></nav>
+  </div>
+</div></footer>
+
+<div class="theme-sw" role="group" aria-label="Цветовая гамма (предпросмотр)">
+  <span class="lb">Гамма</span>
+  <button type="button" data-theme-set="rampa" aria-pressed="true" title="Свет рампы"><i style="background:#F5B82E"></i><i style="background:#0F0F0F"></i><i style="background:#F5F3EE"></i><span class="nm">Свет рампы</span></button>
+  <button type="button" data-theme-set="electric" aria-pressed="false" title="Electric Play"><i style="background:#C7FF35"></i><i style="background:#6638E8"></i><i style="background:#FF6B59"></i><span class="nm">Electric Play</span></button>
+  <button type="button" data-theme-set="violet" aria-pressed="false" title="Electric · фиолет"><i style="background:#6638E8"></i><i style="background:#C7FF35"></i><i style="background:#171525"></i><span class="nm">Фиолет</span></button>
+  <button type="button" data-theme-set="coral" aria-pressed="false" title="Electric · коралл"><i style="background:#FF6B59"></i><i style="background:#6638E8"></i><i style="background:#C7FF35"></i><span class="nm">Коралл</span></button>
+</div>
+
+<div class="stk"><a class="btn y" href="#join">Вводное занятие · 30 ноября</a></div>
+
+<script src="d3-array.min.js"></script>
+<script src="d3-geo.min.js"></script>
+<script src="land.js"></script>
+<script>
+(function () {
+  var INTRO = new Date('2026-11-30T13:00:00Z');   // 16:00 Moscow
+  var MSK_HOUR_UTC = 13;
+  var HM = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' };
+  var DM = { weekday: 'short', day: 'numeric', month: 'short' };
+  function fmt(d, tz, o) { try { return new Intl.DateTimeFormat('ru-RU', Object.assign(tz ? { timeZone: tz } : {}, o)).format(d); } catch (e) { return ''; } }
+  function hourOf(t) { return parseInt(t.slice(0, 2), 10) || 12; }
+  function partOf(h) { return h < 5 ? 'ночь' : h < 12 ? 'утро' : h < 18 ? 'день' : h < 23 ? 'вечер' : 'ночь'; }
+  function plural(n, a, b, c) { var m10 = n % 10, m100 = n % 100; if (m10 === 1 && m100 !== 11) return a; if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return b; return c; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function all(sel, fn) { document.querySelectorAll(sel).forEach(fn); }
+  var reduce = false; try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+  /* ---------- colour theme preview ---------- */
+  function setTheme(t) {
+    if (t === 'rampa') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
+    all('[data-theme-set]', function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === t ? 'true' : 'false'); });
+    try { localStorage.setItem('pbo-theme', t); } catch (e) {}
+  }
+  setTheme(document.documentElement.getAttribute('data-theme') || 'rampa');
+  all('[data-theme-set]', function (b) { b.addEventListener('click', function () { setTheme(b.getAttribute('data-theme-set')); }); });
+
+  /* ---------- currency ---------- */
+  var cur = 'rub';
+  try { cur = localStorage.getItem('pbo-cur') || (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Moscow' ? 'rub' : 'rub'); } catch (e) {}
+  function money(pair) {
+    var p = pair.split('|');
+    var n = String(p[0]); if (n.length > 4) n = n.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+    return cur === 'eur' ? p[1] + '\u00a0€' : n + '\u00a0₽';
+  }
+  function applyCur() {
+    all('[data-price]', function (el) { el.textContent = money(el.getAttribute('data-price')); });
+    all('[data-set-cur]', function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-set-cur') === cur ? 'true' : 'false'); });
+    var early = Date.now() < new Date('2026-11-30T21:00:00Z').getTime();
+    all('[data-price-now]', function (el) { el.textContent = money(early ? '22000|220' : '25000|250') + (early ? ' при записи до 30 ноября' : ''); });
+    all('[data-cur-full]', function (el) { el.textContent = money('25000|250'); });
+    all('[data-cur-intro]', function (el) { el.textContent = money('1000|10'); });
+  }
+  all('[data-set-cur]', function (b) { b.addEventListener('click', function () { cur = b.getAttribute('data-set-cur'); try { localStorage.setItem('pbo-cur', cur); } catch (e) {} applyCur(); }); });
+  applyCur();
+
+  /* ---------- 9 windows ---------- */
+  var phrases = ['Зритель из другой страны — в первом ряду', 'Сцена, до которой не нужно лететь', 'Играем из своей комнаты — и это часть истории', 'Камера видит то, что не видно из зала', 'Одна история — много часовых поясов', 'Можно прийти в тапочках. Чувства — настоящие', 'Свои люди — даже на другом конце света'];
+  var people = [
+    { kind: 'vid', role: 'Участница', vid: 'hair.mp4', poster: 'hair_poster.jpg' },
+    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем' },
+    { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar' },
+    { kind: 'img', role: 'Участница', img: 'olga.jpg', pos: '50% 40%', alt: 'Участница курса смеётся в окне Zoom' },
+    { kind: 'img', role: 'Рассказчица', speaker: true, img: 'anna.jpg', pos: '50% 35%', alt: 'Рассказчица улыбается в окне Zoom' },
+    { kind: 'vid', role: 'Актриса', vid: 'scarf.mp4', poster: 'scarf_poster.jpg' },
+    { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными' },
+    { kind: 'vid', role: 'Актриса', vid: 'candle.mp4', poster: 'candle_poster.jpg' },
+    { kind: 'you', role: 'Вы' }
+  ];
+  var grid = document.getElementById('grid');
+  var refs = people.map(function (p, i) {
+    var t = document.createElement('div');
+    t.className = 'tile' + (p.speaker ? ' speaking' : '');
+    var h = '';
+    if (p.kind === 'vid') h = '<video data-auto src="' + p.vid + '" poster="' + p.poster + '" autoplay muted loop playsinline preload="metadata" aria-label="' + esc(p.role) + ' в окне Zoom"></video>';
+    if (p.kind === 'img') h = '<img src="' + p.img + '" alt="' + esc(p.alt) + '" style="object-position:' + p.pos + '">';
+    if (p.kind === 'phrase') h = '<p class="phr"></p>';
+    if (p.kind === 'you') h = '<a class="you" href="#join"><b>+</b>Здесь может быть ваше окно</a>';
+    if (p.eq) h += '<span class="eqb" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+    var label = p.kind === 'you' ? 'Вы<span class="x"> · ваш город</span>' : esc(p.role.split(' · ')[0]) + '<span class="x">' + (p.role.indexOf(' · ') > 0 ? ' · ' + esc(p.role.split(' · ')[1]) : '') + (p.city ? ' · ' + esc(p.city) : '') + '</span>';
+    h += '<span class="tp"></span><span class="tl">' + label + '</span>';
+    t.innerHTML = h;
+    grid.appendChild(t);
+    return { el: t, p: p, pill: t.querySelector('.tp'), phr: t.querySelector('.phr'), i: i };
+  });
+  var tick = 0;
+  function update() {
+    var now = new Date();
+    refs.forEach(function (r) {
+      var p = r.p;
+      if (p.tz || p.kind === 'you') {
+        var time = fmt(now, p.tz || null, HM), h = hourOf(time);
+        var night = h < 6 || h >= 22, twi = !night && (h < 9 || h >= 18);
+        r.pill.textContent = (night ? '☾ ' : '☼ ') + time;
+        if (p.kind === 'phrase' || p.kind === 'you') { r.el.classList.toggle('night', night); r.el.classList.toggle('twi', twi); }
+      } else r.pill.textContent = '● в эфире';
+      if (r.phr) { r.phr.textContent = phrases[tick % phrases.length]; r.phr.classList.remove('fade'); void r.phr.offsetWidth; r.phr.classList.add('fade'); }
+    });
+    all('[data-now]', function (el) { el.textContent = fmt(now, el.getAttribute('data-now'), HM); });
+    tick++;
+  }
+  update(); setInterval(update, 3600);
+
+  // heart button: one heart floats up from the bar
+  var bar = document.getElementById('bar');
+  document.getElementById('send-heart').addEventListener('click', function () {
+    if (reduce) return;
+    var s = document.createElement('span'); s.className = 'heart';
+    s.style.left = (40 + Math.random() * 20) + '%';
+    s.innerHTML = '<svg viewBox="0 0 24 24" style="fill:var(--emo)" stroke="#0F0F0F" stroke-width="1"><path d="M12 20 C 2 13, 2 6, 7 4.5 C 9.5 3.8, 11.3 5.5, 12 7 C 12.7 5.5, 14.5 3.8, 17 4.5 C 22 6, 22 13, 12 20 Z"/></svg>';
+    bar.appendChild(s); setTimeout(function () { s.remove(); }, 2600);
+  });
+
+  /* ---------- places, marquee, times ---------- */
+  var places = [
+    { city: 'Москва', country: 'Россия', tz: 'Europe/Moscow' },
+    { city: 'Батуми', country: 'Грузия', tz: 'Asia/Tbilisi' },
+    { city: 'Ереван', country: 'Армения', tz: 'Asia/Yerevan' },
+    { city: 'Белград', country: 'Сербия', tz: 'Europe/Belgrade' },
+    { city: 'Берлин', country: 'Германия', tz: 'Europe/Berlin' },
+    { city: 'Нью-Йорк', country: 'США', tz: 'America/New_York' },
+    { city: 'Монтевидео', country: 'Уругвай', tz: 'America/Montevideo' },
+    { city: 'Буэнос-Айрес', country: 'Аргентина', tz: 'America/Argentina/Buenos_Aires' },
+    { city: 'Нячанг', country: 'Вьетнам', tz: 'Asia/Ho_Chi_Minh' },
+    { city: 'Бали', country: 'Индонезия', tz: 'Asia/Makassar' }
+  ];
+  var items = places.map(function (p) {
+    var t = fmt(new Date('2026-12-07T13:00:00Z'), p.tz, HM), h = hourOf(t), dark = h < 7 || h >= 18;
+    return '<span class="item"><span class="city">' + esc(p.city) + '</span><span class="t' + (dark ? ' dark' : '') + '">' + (dark ? '☾' : '☼') + ' ' + t + '</span><span class="part">' + partOf(h) + '</span></span>';
+  }).join('');
+  document.getElementById('track').innerHTML = items + items;
+  var timesEl = document.getElementById('times');
+  if (timesEl) timesEl.innerHTML = places.map(function (p) {
+    return '<div class="trow"><span class="c">' + esc(p.city) + '</span><span class="v"><small>' + fmt(INTRO, p.tz, DM) + '</small><b>' + fmt(INTRO, p.tz, HM) + '</b></span></div>';
+  }).join('');
+  var zones = new Set(places.map(function (p) { return fmt(INTRO, p.tz, HM); })).size;
+  var countries = new Set(places.map(function (p) { return p.country; })).size;
+  all('[data-cityline]', function (el) { el.textContent = countries + ' ' + plural(countries, 'страна', 'страны', 'стран') + ' · ' + zones + ' ' + plural(zones, 'часовой пояс', 'часовых пояса', 'часовых поясов'); });
+  all('[data-zones]', function (el) { el.textContent = zones; });
+  all('[data-intro-local]', function (el) { el.textContent = fmt(INTRO, null, HM); });
+  all('[data-intro-day]', function (el) { el.textContent = fmt(INTRO, null, DM); });
+  all('[data-course-local]', function (el) { el.textContent = fmt(new Date('2026-12-07T13:00:00Z'), null, HM); });
+  var diff = INTRO.getTime() - Date.now();
+  all('[data-countdown]', function (el) {
+    if (diff <= 0) return;
+    var d = Math.ceil(diff / 86400000);
+    el.textContent = d >= 2 ? 'через ' + d + ' ' + plural(d, 'день', 'дня', 'дней') : 'уже совсем скоро';
+    el.hidden = false;
+  });
+
+  /* ---------- programme ---------- */
+  var prog = [
+    ['2026-12-07', 'Знакомство и ансамбль', 'Доверие, слушание, первые игры. Как быть вместе, когда все в разных окнах.'],
+    ['2026-12-14', 'Камера как сцена', 'Кадр, свет, движение к камере и от неё. Передаём жест и предмет из окна в окно.'],
+    ['2026-12-21', 'Текучие скульптуры', 'Первая форма плейбэка: чувство рассказчика в движении и звуке.'],
+    ['2026-12-28', 'Пары и хор', 'Две стороны одного чувства и голос группы.'],
+    ['2027-01-11', 'Живые картины', 'Короткие истории, собранные из нескольких окон.'],
+    ['2027-01-18', 'Рассказчик и ведущий', 'Как задавать вопросы, слушать и передавать историю актёрам.'],
+    ['2027-01-25', 'Музыка в плейбэке', 'Как музыка подхватывает историю и как актёры её слышат.'],
+    ['2027-02-01', 'Сцена: от истории к игре', 'Как из рассказа рождается сцена: роли, место, главное.'],
+    ['2027-02-08', 'Сцена: начало и конец', 'Строим полную сцену и возвращаем её рассказчику.'],
+    ['2027-02-15', 'Генеральная репетиция', 'Проходим всё выступление как в настоящем показе.'],
+    ['2027-02-22', 'Выступление', 'Играем для зрителей — ваших родных, друзей и гостей из разных стран.', 'fin'],
+    ['2027-03-01', 'Разбор и что дальше', 'Что получилось, что забираем с собой и как играть дальше.', 'fin']
+  ];
+  var DAY = { day: 'numeric', month: 'long' };
+  var html = '';
+  prog.forEach(function (r, i) {
+    if (r[0] === '2027-01-11') html += '<li class="brk">4 января — перерыв на праздники</li>';
+    var d = new Date(r[0] + 'T' + (MSK_HOUR_UTC < 10 ? '0' : '') + MSK_HOUR_UTC + ':00:00Z');
+    html += '<li' + (r[3] ? ' class="' + r[3] + '"' : '') + ' data-r><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="d">' + fmt(d, 'Europe/Moscow', DAY) + '</span><h3>' + esc(r[1]) + '</h3><p>' + esc(r[2]) + '</p></li>';
+  });
+  var progEl = document.getElementById('prog'); if (progEl) progEl.innerHTML = html;
+
+  /* ---------- reviews ---------- */
+  var src = [
+    { name: 'Данила Розанов', place: 'Уругвай', text: 'С помощью плейбэка я хотел научиться лучше управлять своими эмоциями, но получил намного больше! Я стал замечать, как отпускаю контроль, расслабляюсь и начинаю действовать спонтанно, что мне не очень свойственно. Причём не только во время, но и между занятиями. После многих лет терапии и коучинга такой мощный эффект стал настоящим сюрпризом. И у меня есть только одно объяснение, почему это работает так: весь процесс — от разминки до перформанса — это бесконечный кайф!' },
+    { name: 'Дарья Дудова', text: 'Спасибо за вчерашний волшебный вечер! Это была магия «можно» 💜', accent: true },
+    { name: 'Роман Райков', place: 'Вьетнам', text: 'Спасибо за такой потрясающий опыт! Давно хотел попробовать себя актёром, но стеснялся и боялся, что не получится. Располагающая и бережная обстановка убрала страхи. Это место, где можно пробовать новое и отдаваться процессу. Я снимаю ещё рилс, и теперь делаю это без страха, ушла зажатость, научился кайфовать от процесса. Рекомендую всем, кто хочет открыть новую грань жизни.' },
+    { name: 'Татьяна', place: 'Вьетнам', text: 'Я жила в городах, где не было очных групп обучения плейбэку, поэтому группа онлайн для меня — про ценную ✨ и уникальную возможность пробовать присоединиться к миру театра и плейбэка даже там, где его нет физически. Оказалось, что здесь не нужны специальные актёрские навыки, но важно быть готовым услышать другого, фантазировать, открыто делиться своими историями и желание рисковать изобразить услышанное в игре, а тренеры ❤️ направили это в плейбэкерское русло.\n\nВ группе я встретила людей из разных стран, училась играть чувства и истории других участников, чувствовать музыку 🎶, опираться на онлайн-партнёров, говорить «да, и» в игре и по итогу вместе мы создали перформанс для родных и близких.\n\nНеожиданно для тренеров (я думаю ☺️) мы не захотели расходиться и продолжаем учиться играть дальше. У нас случилось маленькое тёплое комьюнити группы и, конечно же, овладевание языком плейбэка, через который мы общаемся на каждой репетиции, и, надеюсь, продолжим ещё долго.' },
+    { name: 'Светлана Соколова', place: 'Москва', text: 'Дорогие наставники — Сандра и Миша, одногруппницы — Марина, Лиза, Маша! Хочу поблагодарить каждого из вас за невероятные три месяца погружения в онлайн-плейбэк, за созданную образовательную среду, доверительную и свободно творческую атмосферу. За такой короткий срок мы не только научились играть в виртуальном зрительном зале, но и сыграли три перформанса, что невероятно и мощно продвинуло нас как уже сыгранную команду.\n\nИ лично мне, если смотреть в будущее, не хотелось бы сбавлять обороты, а наоборот — хочется продолжать качать эту онлайн-плейбэковскую мышцу 💪 и продолжать выступать дальше, чтобы как можно большему количеству людей показать этот «Мир за окном».' },
+    { name: 'Марина Куликова', place: 'Словакия', text: 'Для меня знакомство с плейбэк-театром было развлечением, где я хотела выгулять своего «внутреннего ребёнка». Было интересно попробовать, поиграть, этакое хулиганство. А оказалось, что это очень хорошая, глубокая терапия для меня взрослой. При этом Сандра создаёт удивительно безопасное пространство, где не страшно быть собой, прожить эмоции, повеселиться, погрустить, поплакать без осуждений, ухмылок, с полным принятием тебя как человека и как начинающего актёра. А Миша это чудесное взаимодействие делает наполненным акцентами, музыкой, душой. Это просто удивительно, как тонко ребята чувствуют каждого участника нашей мини-группы, как чутко реагируют на наше состояние, эмоции, желание прожить эти маленькие сценки, полностью отдаваясь процессу.' },
+    { name: 'Андрей Астахов', text: 'Большое спасибо организаторам и участникам. Замечательный мастер-класс! До встречи!' },
+    { name: 'Анастасия', place: 'Венгрия', text: 'Хочу выразить большую благодарность Сандре и Мише за мой первый плейбэк в жизни! Плейбэк меня заинтересовал с первой минуты, как я увидела его в сторис у Сандры. И я была очень рада, когда Сандра объявила о наборе в новый онлайн-поток! Теперь можно не только наблюдать, но научиться играть самой!\n\nДля меня плейбэк — это не только возможность самовыражения, но и развитие креативности, расширение собственных границ. И переключение с бытовых ситуаций, работы, возможность дать мозгу отдохнуть.\n\nНа онлайн-потоке Сандра и Миша оказывают колоссальную поддержку во время игры, объясняют, как играть разные формы, помогают раскрыться, убрать стеснение и полностью отдаться процессу. Музыка во время игры — это отдельный восторг! Никогда не понимала — это Миша подстраивается под игру, или игра под Мишу 😂\n\nНа потоке Сандра играет вместе с ребятами, и я всегда с интересом смотрю на движения и слова, которые Сандра использует во время форм: возможность наблюдать за опытными актёрами плейбэк-театра помогает разнообразить и мою игру!\n\nP. S. Так как в моей стране плейбэк на английском или русском сложно найти, честно скажу — я искала разные группы онлайн, чтобы попробовать больше. Но больше, чем у Миши с Сандрой, я не нашла 😅 Во-первых, не у всех есть живое музыкальное сопровождение, которое создаёт атмосферу, а во-вторых, именно Сандра и Миша сплачивают команду и рассказывают, как сыграться, подсказывают «фишки», что позволяет влиться с первых встреч!\n\nP. P. S. Спасибо ребятам огромное!' }
+  ];
+  var LIMIT = 260;
+  function cut(s) { var t = s.replace(/\n+/g, ' '); if (t.length <= LIMIT) return t; var i = t.lastIndexOf(' ', LIMIT); return t.slice(0, i > 0 ? i : LIMIT) + '…'; }
+  var revs = document.getElementById('revs');
+  src.forEach(function (r) {
+    var long = r.text.length > LIMIT, short = r.text.length < 120;
+    var d = document.createElement('div');
+    d.className = 'rev' + (r.accent ? ' acc' : '') + (short ? ' short' : '');
+    d.setAttribute('data-r', '');
+    d.innerHTML = '<span class="qm" aria-hidden="true">“</span><p class="txt"></p>' + (long ? '<button type="button" class="more" aria-expanded="false">Читать полностью</button>' : '') +
+      '<div class="who"><span class="ava" aria-hidden="true">' + esc(r.name.charAt(0)) + '</span><span><strong>' + esc(r.name) + '</strong>' + (r.place ? '<small>' + esc(r.place) + '</small>' : '') + '</span></div>';
+    var p = d.querySelector('.txt'); p.textContent = long ? cut(r.text) : r.text;
+    var b = d.querySelector('.more');
+    if (b) b.addEventListener('click', function () { var open = b.getAttribute('aria-expanded') === 'true'; p.textContent = open ? cut(r.text) : r.text; b.textContent = open ? 'Читать полностью' : 'Свернуть'; b.setAttribute('aria-expanded', open ? 'false' : 'true'); });
+    if (revs.children.length >= 6) d.classList.add('hide');
+    revs.appendChild(d);
+  });
+
+  var moreBtn = document.getElementById('more-revs'), hidden = revs.querySelectorAll('.rev.hide').length;
+  if (moreBtn && hidden) { moreBtn.hidden = false; moreBtn.textContent = 'Ещё отзывы (' + hidden + ')'; moreBtn.addEventListener('click', function () { revs.querySelectorAll('.rev.hide').forEach(function (r) { r.classList.remove('hide'); r.classList.add('in'); }); moreBtn.remove(); }); }
+
+  /* ---------- video kick ---------- */
+  function kick() { all('video[data-auto]', function (v) { v.muted = true; if (v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } }); }
+  setTimeout(kick, 400); setInterval(kick, 4000);
+
+  /* ---------- menu ---------- */
+  var top = document.querySelector('.top'), burger = document.querySelector('.burger');
+  function setMenu(o) { top.classList.toggle('open', o); burger.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+  burger.addEventListener('click', function () { setMenu(!top.classList.contains('open')); });
+  all('#site-nav a', function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  all('[data-pick]', function (a) { a.addEventListener('click', function () { var r = document.querySelector('input[name="what"][value="' + a.getAttribute('data-pick') + '"]'); if (r) r.checked = true; }); });
+
+  /* ---------- form ---------- */
+  document.getElementById('join-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('form-note').textContent = 'Спасибо! На рабочем сайте здесь откроется оплата. Сейчас это предпросмотр, данные никуда не отправляются.';
+  });
+
+  /* ---------- scroll reveal ---------- */
+  if (document.documentElement.classList.contains('js-anim')) {
+    var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    all('[data-r]', function (el) { io.observe(el); });
+  }
+
+  /* ---------- live globe: rolls in from the left, then turns west→east with scroll ---------- */
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function ease(t) { return 1 - Math.pow(1 - t, 3); }
+  var G = null;
+  (function () {
+    var box = document.getElementById('globe');
+    if (!box || !window.d3 || !d3.geoOrthographic || !window.LAND) return;
+    var cv = document.createElement('canvas');
+    cv.setAttribute('role', 'img');
+    cv.setAttribute('aria-label', box.querySelector('svg').getAttribute('aria-label'));
+    box.appendChild(cv); box.classList.add('live');
+    var ctx = cv.getContext('2d');
+    var proj = d3.geoOrthographic().clipAngle(90).precision(0.6), path = d3.geoPath(proj, ctx);
+    var grat = d3.geoGraticule().step([20, 20])();
+    var C = { bt: [41.64, 41.64], mv: [-56.16, -34.9], msk: [37.62, 55.76], ev: [44.51, 40.18], bg: [20.46, 44.79], be: [13.40, 52.52], ny: [-74.0, 40.71], ba: [-58.38, -34.6], nt: [109.19, 12.24], dps: [115.19, -8.41] };
+    var arcs = [['mv', 'bt', 2], ['mv', 'ny', 1.5], ['mv', 'ba', 1.5], ['bt', 'msk', 1.5], ['bt', 'ev', 1.5], ['bt', 'bg', 1.5], ['bg', 'be', 1.5], ['bt', 'nt', 1.5], ['nt', 'dps', 1.5]];
+    var interp = arcs.map(function (a) { return d3.geoInterpolate(C[a[0]], C[a[1]]); });
+    // [id, name, dx, dy, align, size, host?]
+    var labels = [['bt', 'Батуми', -10, -6, 'right', 14, 1], ['mv', 'Монтевидео', 10, 16, 'left', 14, 1], ['msk', 'Москва', 9, -6, 'left', 13], ['ev', 'Ереван', 9, 13, 'left', 13], ['bg', 'Белград', -9, 14, 'right', 13], ['be', 'Берлин', -9, -5, 'right', 13], ['ny', 'Нью-Йорк', -9, -5, 'right', 13], ['ba', 'Буэнос-Айрес', -10, -4, 'right', 13], ['nt', 'Нячанг', 9, 5, 'left', 13], ['dps', 'Бали', 9, 5, 'left', 13]];
+    var size = 0, dpr = 1, W = 1.32;
+    function resize() { size = box.clientWidth; dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = Math.round(size * W * dpr); cv.height = Math.round(size * dpr); }
+    resize(); window.addEventListener('resize', resize);
+    var st = { enter: reduce ? 1 : 0, turn: 0, tx: 0, on: false };
+    function draw(t) {
+      if (!size) return;
+      var k = size / 440, e = ease(st.enter);
+      var centre = -40 + 100 * st.turn - (1 - e) * 220;    // centre longitude: Americas → Europe → Asia
+      var lam = -centre, off = size * (W - 1) / 2;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, size * W, size);
+      proj.scale(205 * k).translate([220 * k + off, 220 * k]).rotate([lam, -12]);
+      var css = getComputedStyle(document.documentElement), GL = css.getPropertyValue('--globe').trim() || '#F5B82E', INK = css.getPropertyValue('--ink').trim() || '#0F0F0F';
+      ctx.beginPath(); path({ type: 'Sphere' }); ctx.fillStyle = GL; ctx.fill();
+      ctx.beginPath(); path(grat); ctx.strokeStyle = 'rgba(15,15,15,.14)'; ctx.lineWidth = .8 * k; ctx.stroke();
+      ctx.beginPath(); path(window.LAND); ctx.fillStyle = '#FFFFFF'; ctx.fill(); ctx.strokeStyle = 'rgba(15,15,15,.35)'; ctx.lineWidth = .6 * k; ctx.lineJoin = 'round'; ctx.stroke();
+      ctx.beginPath(); path({ type: 'Sphere' }); ctx.strokeStyle = INK; ctx.lineWidth = 1.5 * k; ctx.stroke();
+      var grow = clamp((e - .82) / .18); if (grow <= 0) return;
+      var c = [centre, 12];
+      function seen(ll) { return d3.geoDistance(ll, c) < Math.PI / 2 - .03; }
+      ctx.strokeStyle = INK; ctx.lineCap = 'round'; ctx.setLineDash([5 * k, 9 * k]);
+      ctx.lineDashOffset = reduce ? 0 : -((t / 1600) * 28 * k) % (14 * k);
+      arcs.forEach(function (a, i) { var pts = [], n = 28, m = Math.max(1, Math.round(n * grow)); for (var j = 0; j <= m; j++) pts.push(interp[i](j / n)); ctx.beginPath(); path({ type: 'LineString', coordinates: pts }); ctx.lineWidth = a[2] * k; ctx.stroke(); });
+      ctx.setLineDash([]); ctx.globalAlpha = grow;
+      if (!reduce) ['bt', 'mv'].forEach(function (id, j) { if (!seen(C[id])) return; var ph = ((t + j * 1300) % 2600) / 2600, p = proj(C[id]); ctx.beginPath(); ctx.arc(p[0], p[1], (6 + 16 * ph) * k, 0, 6.2832); ctx.strokeStyle = 'rgba(15,15,15,' + (.9 * (1 - ph) * grow).toFixed(3) + ')'; ctx.lineWidth = 1.5 * k; ctx.stroke(); });
+      Object.keys(C).forEach(function (id) { if (!seen(C[id])) return; var p = proj(C[id]), host = id === 'bt' || id === 'mv'; ctx.beginPath(); ctx.arc(p[0], p[1], (host ? 7 : 5) * k, 0, 6.2832); ctx.fillStyle = host ? '#FFFFFF' : '#0F0F0F'; ctx.fill(); ctx.strokeStyle = host ? '#0F0F0F' : '#FFFFFF'; ctx.lineWidth = 2 * k; ctx.stroke(); });
+      labels.forEach(function (l) {
+        if (!seen(C[l[0]])) return;
+        var p = proj(C[l[0]]);
+        ctx.font = (l[6] ? '700 ' : '600 ') + (l[5] * k).toFixed(1) + 'px "Inter Tight", Inter, system-ui, sans-serif';
+        ctx.textAlign = l[4]; ctx.lineJoin = 'round'; ctx.lineWidth = 4 * k; ctx.strokeStyle = '#FFFFFF';
+        var lw = ctx.measureText(l[1]).width, lx = p[0] + l[2] * k, ly = p[1] + l[3] * k, pad = 4 * k;
+        if (l[4] === 'left') lx = Math.max(pad, Math.min(lx, size * W - pad - lw)); else lx = Math.min(size * W - pad, Math.max(lx, pad + lw));
+        ctx.strokeText(l[1], lx, ly); ctx.fillStyle = INK; ctx.fillText(l[1], lx, ly);
+      });
+      ctx.globalAlpha = 1;
+    }
+    function place() {
+      var r = box.getBoundingClientRect(), vh = window.innerHeight, baseLeft = r.left - st.tx;
+      if (!reduce) {
+        st.enter = clamp((vh * 1.05 - r.top) / (vh * .75));
+        st.turn = clamp((vh * .55 - r.top) / (vh * .75));
+        st.tx = -(baseLeft + r.width + 20) * (1 - ease(st.enter));
+        box.style.transform = 'translateX(' + st.tx.toFixed(1) + 'px)';
+      }
+      st.on = r.bottom > -50 && r.top < vh + 50;
+    }
+    G = { place: place, draw: draw, st: st };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { draw(performance.now()); });
+  })();
+  var ticking = false;
+  function onScroll() { if (ticking) return; ticking = true; requestAnimationFrame(function () { ticking = false; if (G) G.place(); }); }
+  window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll);
+  if (G) { G.place(); G.draw(performance.now()); }
+  (function loop(t) { if (G && G.st.on) G.draw(t || 0); requestAnimationFrame(loop); })(0);
+})();
+</script>
+
+</body>
+</html>
