@@ -586,7 +586,7 @@ main{overflow-x:clip}
   <p class="lead" data-r style="margin-top:24px;max-width:640px">Михаил — в Батуми, Сандра — в Монтевидео. Между ними океан, а сцена одна: у Миши сейчас <strong data-now="Asia/Tbilisi">--:--</strong>, у Сандры — <strong data-now="America/Montevideo">--:--</strong>.</p>
   <div class="hosts">
     <div class="host" data-r>
-      <div class="portrait"><span style="left:8%;top:4%"></span><img src="mikhail.jpg" alt="Михаил Чайлахян с гитарой" style="left:0;object-position:50% 30%" loading="lazy"></div>
+      <div class="portrait"><span style="left:8%;top:4%"></span><img src="media/mikhail.jpg" alt="Михаил Чайлахян с гитарой" style="left:0;object-position:50% 30%" loading="lazy"></div>
       <p class="chip" style="align-self:flex-start;margin:10px 0 0">Батуми · <span data-now="Asia/Tbilisi">--:--</span></p>
       <h3>Михаил Чайлахян</h3>
       <p class="role-l">Ведущий курса · музыкант плейбэк-театра</p>
@@ -594,7 +594,7 @@ main{overflow-x:clip}
       <blockquote>«Музыка во время игры — это отдельный восторг! Никогда не понимала — это Миша подстраивается под игру, или игра под Мишу» <b>— Анастасия, Венгрия</b></blockquote>
     </div>
     <div class="host two" data-r style="--d:.12s">
-      <div class="portrait"><span style="left:0;top:6%"></span><img src="sandra.jpg" alt="Сандра Розанова за ноутбуком" style="right:0;object-position:50% 24%" loading="lazy"></div>
+      <div class="portrait"><span style="left:0;top:6%"></span><img src="media/sandra.jpg" alt="Сандра Розанова за ноутбуком" style="right:0;object-position:50% 24%" loading="lazy"></div>
       <p class="chip" style="align-self:flex-start;margin:10px 0 0">Монтевидео · <span data-now="America/Montevideo">--:--</span></p>
       <h3>Сандра Розанова</h3>
       <p class="role-l">Ведущая курса · актриса и тренер плейбэк-театра</p>
@@ -665,7 +665,7 @@ main{overflow-x:clip}
 <section class="wrap" id="join" style="padding-top:120px;padding-bottom:80px">
   <div class="join">
     <div class="join-pic" data-r>
-      <img src="group.jpg" alt="Актёры плейбэк-театра с ноутбуками" loading="lazy">
+      <img src="media/group.jpg" alt="Актёры плейбэк-театра с ноутбуками" loading="lazy">
       <p class="badge">Ваш выход — из любой точки мира</p>
     </div>
     <form class="form" id="join-form" novalidate data-r style="--d:.12s">
@@ -709,9 +709,9 @@ main{overflow-x:clip}
 
 <div class="stk"><a class="btn y" href="#join">Вводное занятие · 30 ноября</a></div>
 
-<script src="d3-array.min.js"></script>
-<script src="d3-geo.min.js"></script>
-<script src="land.js"></script>
+<script src="js/d3-array.min.js"></script>
+<script src="js/d3-geo.min.js"></script>
+<script src="js/land.js"></script>
 <script>
 (function () {
   var INTRO = new Date('2026-11-30T13:00:00Z');   // 16:00 Moscow
@@ -757,14 +757,14 @@ main{overflow-x:clip}
   /* ---------- 9 windows ---------- */
   var phrases = ['Зритель из другой страны — в первом ряду', 'Сцена, до которой не нужно лететь', 'Играем из своей комнаты — и это часть истории', 'Камера видит то, что не видно из зала', 'Одна история — много часовых поясов', 'Можно прийти в тапочках. Чувства — настоящие', 'Свои люди — даже на другом конце света'];
   var people = [
-    { kind: 'vid', role: 'Участница', vid: 'hair.mp4', poster: 'hair_poster.jpg' },
-    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем' },
+    { kind: 'vid', role: 'Участница', vid: 'media/hair.mp4', poster: 'media/hair_poster.jpg' },
+    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'media/sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем' },
     { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar' },
-    { kind: 'img', role: 'Участница', img: 'olga.jpg', pos: '50% 40%', alt: 'Участница курса смеётся в окне Zoom' },
-    { kind: 'img', role: 'Рассказчица', speaker: true, img: 'anna.jpg', pos: '50% 35%', alt: 'Рассказчица улыбается в окне Zoom' },
-    { kind: 'vid', role: 'Актриса', vid: 'scarf.mp4', poster: 'scarf_poster.jpg' },
-    { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными' },
-    { kind: 'vid', role: 'Актриса', vid: 'candle.mp4', poster: 'candle_poster.jpg' },
+    { kind: 'img', role: 'Участница', img: 'media/olga.jpg', pos: '50% 40%', alt: 'Участница курса смеётся в окне Zoom' },
+    { kind: 'img', role: 'Рассказчица', speaker: true, img: 'media/anna.jpg', pos: '50% 35%', alt: 'Рассказчица улыбается в окне Zoom' },
+    { kind: 'vid', role: 'Актриса', vid: 'media/scarf.mp4', poster: 'media/scarf_poster.jpg' },
+    { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'media/mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными' },
+    { kind: 'vid', role: 'Актриса', vid: 'media/candle.mp4', poster: 'media/candle_poster.jpg' },
     { kind: 'you', role: 'Вы' }
   ];
   var grid = document.getElementById('grid');
