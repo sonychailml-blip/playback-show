@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Группа личных историй — playback.show</title>
+<meta name="description" content="Онлайн терапевтическая группа в Zoom. Вашу историю услышат и бережно покажут на сцене. Ведёт психолог и психотерапевт Сандра Розанова вместе с музыкантом Михаилом Чайлахяном.">
+<link rel="canonical" href="https://playback.show/group/">
+<link rel="icon" href="/media/favicon.svg">
+<meta name="theme-color" content="#6638E8">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="playback.show">
+<meta property="og:url" content="https://playback.show/group/">
+<meta property="og:title" content="Место, где вашу историю услышат и увидят">
+<meta property="og:description" content="Терапевтическая группа онлайн в Zoom. Ведёт психолог. Актёрский опыт не нужен.">
+<meta property="og:image" content="https://playback.show/media/og-group.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://playback.show/media/og-group.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+html{color-scheme:light}
+body{margin:0}
+
+/* Layout: a quiet, airy page built around a circle — the group sits in a ring and the "storyteller" moves around it; content in calm two-column rows, one warm accent. */
+:root{
+  --bg:#F7F5F9; --fg:#1E1A2C; --muted:#625C72; --line:#E5E0EC; --soft:#EFEBF5; --card:#FFFFFF;
+  --pri:#6638E8; --pri-soft:#E9E2FD; --warm:#FF9C82; --warm-soft:#FFE6DE; --calm:#CFE8DA; --ink:#1E1A2C;
+  --display:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --text:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:28px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141120; --fg:#F2EFF8; --muted:#A8A1B8; --line:#2A2539; --soft:#1C182A; --card:#1C182A;
+  --pri:#9474F7; --pri-soft:#2A2148; --warm:#FF9C82; --warm-soft:#3A2420; --calm:#24392F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141120; --fg:#F2EFF8; --muted:#A8A1B8; --line:#2A2539; --soft:#1C182A; --card:#1C182A;
+  --pri:#9474F7; --pri-soft:#2A2148; --warm:#FF9C82; --warm-soft:#3A2420; --calm:#24392F; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.65 var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.025em;line-height:1.06;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.sec{padding-block:120px 0}
+.eyebrow{font:600 13px/1.3 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.h2{font-size:clamp(34px,4.6vw,56px)}
+.lead{font-size:clamp(18px,1.9vw,20px);line-height:1.6;color:var(--fg)}
+.m{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;border:0;font:600 16px/1 var(--text);text-decoration:none;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--warm);outline-offset:3px}
+.btn-pri{background:var(--pri);color:#fff}
+.btn-ghost{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--fg)}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:600 20px/1 var(--display);letter-spacing:-.02em}
+.mark{width:44px;height:44px;border-radius:50%;background:#6638E8;display:flex;align-items:center;justify-content:center;flex:none}
+.mark i{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5px;width:21px}
+.mark b{height:8px;border-radius:2px;background:#FFFFFF}.mark b:last-child{background:#C7FF35}
+.nav{display:flex;gap:28px;margin-left:auto;font:500 15px/1 var(--text)}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--fg)}
+.top .btn{min-height:44px;padding:0 20px;font-size:15px}
+@media (max-width:900px){.nav{display:none}.top .btn{margin-left:auto}}
+@media (max-width:420px){.brand span:last-child{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center;padding-block:72px 40px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;background:var(--soft);font:500 14px/1 var(--text)}
+.chip.pr{background:var(--pri-soft);color:var(--fg)}
+.h1{font-size:clamp(42px,6.2vw,80px);line-height:1.02;letter-spacing:-.035em}
+.h1 em{font-style:normal;color:var(--pri)}
+.hero .lead{margin-top:28px;max-width:560px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero-note{margin-top:22px;font-size:15px;color:var(--muted)}
+@media (max-width:920px){.hero{grid-template-columns:1fr;gap:24px}}
+
+/* the circle */
+.circle{position:relative;width:100%;max-width:460px;aspect-ratio:1/1;margin:0 auto}
+.circle .floor{position:absolute;inset:9%;border-radius:50%;background:radial-gradient(circle,var(--warm-soft) 0,var(--soft) 58%,transparent 72%)}
+.circle .ring{position:absolute;inset:14%;border-radius:50%;border:1.5px dashed var(--line)}
+.p{position:absolute;width:15%;aspect-ratio:1/1;margin:-7.5% 0 0 -7.5%;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:grid;place-items:center;transition:transform .6s cubic-bezier(.2,.8,.2,1),background .6s,border-color .6s}
+.p svg{width:52%;height:52%;fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;transition:stroke .6s}
+.p.on{background:var(--warm);border-color:var(--warm);transform:scale(1.18)}
+.p.on svg{stroke:#2A1A14}
+.p.list svg{stroke:var(--pri)}
+.c-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46%;text-align:center}
+.c-center b{display:block;font:600 clamp(17px,1.8vw,20px)/1.25 var(--display);letter-spacing:-.01em}
+.c-center span{display:block;margin-top:6px;font-size:13.5px;color:var(--muted);line-height:1.4}
+.bubble{position:absolute;padding:8px 13px;border-radius:14px;background:var(--fg);color:var(--bg);font:500 13.5px/1.2 var(--text);white-space:nowrap;transform:translate(-50%,-100%);transition:left .6s cubic-bezier(.2,.8,.2,1),top .6s cubic-bezier(.2,.8,.2,1),opacity .3s;pointer-events:none}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;margin-left:-5px;background:var(--fg);transform:rotate(45deg);border-radius:2px}
+
+/* split rows */
+.split{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:start}
+.split .body{display:flex;flex-direction:column;gap:20px;max-width:640px}
+@media (max-width:880px){.split{grid-template-columns:1fr;gap:28px}}
+
+/* who comes */
+.who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;margin-top:8px}
+.who li{list-style:none;padding:20px 0 20px 34px;border-top:1px solid var(--line);position:relative}
+.who li::before{content:"";position:absolute;left:4px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--warm)}
+.who b{display:block;font:600 18px/1.35 var(--display)}
+.who span{color:var(--muted);font-size:15.5px}
+.who{padding:0;margin:0}
+@media (max-width:640px){.who{grid-template-columns:1fr}}
+
+/* how */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:56px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px 22px 28px;display:flex;flex-direction:column;gap:10px}
+.step .n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--pri-soft);color:var(--pri);font:600 15px/1 var(--display)}
+.step h3{font-size:21px;letter-spacing:-.015em;margin-top:6px}
+.step p{font-size:15.5px;color:var(--muted);line-height:1.55}
+.step.key{background:var(--pri);border-color:var(--pri);color:#fff}
+.step.key .n{background:rgba(255,255,255,.18);color:#fff}
+.step.key p{color:rgba(255,255,255,.85)}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+.why{margin-top:72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;background:var(--soft);border-radius:40px;padding:64px clamp(24px,5vw,72px)}
+.why .big{font:600 clamp(26px,3vw,36px)/1.2 var(--display);letter-spacing:-.02em}
+.why .body{display:flex;flex-direction:column;gap:16px}
+@media (max-width:880px){.why{grid-template-columns:1fr;border-radius:28px;padding-block:44px}}
+
+/* gives */
+.gives{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:48px}
+.give{padding:26px 24px;border-radius:24px;background:var(--card);border:1px solid var(--line)}
+.give h3{font-size:20px;letter-spacing:-.015em}
+.give p{margin-top:8px;font-size:15.5px;color:var(--muted)}
+.give.bonus{background:var(--calm);border-color:var(--calm)}
+.give.bonus p{color:var(--fg);opacity:.8}
+@media (max-width:900px){.gives{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.gives{grid-template-columns:1fr}}
+
+/* safety */
+.safe{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;background:var(--fg);color:var(--bg);border-radius:40px;padding:64px clamp(24px,5vw,72px)}
+.safe .eyebrow{color:color-mix(in srgb,var(--bg) 62%,transparent)}
+.safe ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.safe li{padding:18px 0;border-top:1px solid color-mix(in srgb,var(--bg) 18%,transparent);display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px}
+.safe li:first-child{border-top:0;padding-top:0}
+.safe li svg{width:22px;height:22px;fill:none;stroke:var(--calm);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+.safe b{display:block;font:600 18px/1.35 var(--display)}
+.safe span{color:color-mix(in srgb,var(--bg) 72%,transparent);font-size:15.5px}
+.safe .fine{margin-top:28px;font-size:14.5px;color:color-mix(in srgb,var(--bg) 66%,transparent);max-width:420px}
+@media (max-width:880px){.safe{grid-template-columns:1fr;gap:32px;border-radius:28px;padding-block:44px}}
+
+/* hosts */
+.hosts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;margin-top:56px}
+.host{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;align-items:start}
+.host img{width:200px;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:24px;background:var(--soft)}
+.host h3{font-size:26px}
+.host .role{margin-top:6px;font:600 14px/1.4 var(--text);color:var(--pri)}
+.host p.t{margin-top:14px;font-size:15.5px;color:var(--muted)}
+.host blockquote{margin:18px 0 0;padding:16px 18px;border-radius:18px;background:var(--soft);font-size:15px;line-height:1.55}
+.host blockquote b{display:block;margin-top:8px;font-weight:500;font-size:13.5px;color:var(--muted)}
+@media (max-width:1040px){.hosts{grid-template-columns:1fr}}
+@media (max-width:560px){.host{grid-template-columns:1fr}.host img{width:100%;max-width:320px}}
+
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px;align-items:start}
+.rev{padding:26px 24px;border-radius:24px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:16px}
+.rev p{font-size:16px;line-height:1.6}
+.rev cite{font-style:normal;font-size:14px;color:var(--muted)}
+.rev.big{grid-column:span 2;background:var(--warm-soft);border-color:var(--warm-soft)}
+.rev.big p{font:500 clamp(19px,2vw,23px)/1.45 var(--display);letter-spacing:-.01em}
+@media (max-width:900px){.revs{grid-template-columns:1fr}.rev.big{grid-column:auto}}
+
+/* format */
+.fmt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:48px}
+.f-i{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+.f-i b{display:block;font:600 24px/1.15 var(--display);letter-spacing:-.02em}
+.f-i span{display:block;margin-top:6px;color:var(--muted);font-size:14.5px}
+.f-i.tbd{border-style:dashed;background:transparent}
+.f-i.tbd b{color:var(--muted)}
+@media (max-width:900px){.fmt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* faq */
+.faq{margin-top:40px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:24px 0;font:600 clamp(18px,2vw,21px)/1.3 var(--display)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 28px/1 var(--display);color:var(--pri);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 24px;color:var(--muted);max-width:740px}
+
+/* join */
+.join{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;background:var(--pri-soft);border-radius:40px;padding:64px clamp(24px,5vw,72px)}
+.join form{display:flex;flex-direction:column;gap:14px}
+label.f{display:flex;flex-direction:column;gap:7px;font:500 14px/1.3 var(--text)}
+.f input,.f textarea{border-radius:16px;border:1.5px solid var(--line);background:var(--card);color:var(--fg);padding:0 16px;font:400 16px/1.4 var(--text);width:100%}
+.f input{height:54px}
+.f textarea{padding:14px 16px;min-height:104px;resize:vertical}
+.f small{font-weight:400;color:var(--muted)}
+.note{font-size:14.5px;min-height:1.4em;color:var(--pri)}
+@media (max-width:880px){.join{grid-template-columns:1fr;border-radius:28px;padding-block:44px}}
+
+/* contacts / footer */
+.ct{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}
+.ct div{padding:24px;border-radius:22px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.ct b{font:600 19px/1.3 var(--display)}
+.ct a{color:var(--muted);text-decoration:none;font-size:15.5px}
+.ct a:hover{color:var(--fg);text-decoration:underline}
+@media (max-width:640px){.ct{grid-template-columns:1fr}}
+footer{padding-block:64px 120px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:28px}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:none;padding:12px max(14px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .25s ease}
+.sticky.on{transform:none}
+.sticky .btn{width:100%;min-height:50px}
+@media (max-width:760px){.sticky{display:block}}
+
+@media (prefers-reduced-motion:reduce){.p,.bubble{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="playback.show — в начало"><span class="mark" aria-hidden="true"><i><b></b><b></b><b></b><b></b></i></span><span>playback.show</span></a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#how">Как это устроено</a>
+      <a href="#safe">Безопасность</a>
+      <a href="#hosts">Ведущие</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="btn btn-pri" href="#join">Записаться</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="wrap hero">
+  <div>
+    <div class="chips">
+      <span class="chip pr">Терапевтическая группа</span>
+      <span class="chip">Онлайн в&nbsp;Zoom</span>
+      <span class="chip">12 встреч</span>
+      <span class="chip">Ведёт психолог</span>
+    </div>
+    <h1 class="h1">Место, где вашу историю <em>услышат и&nbsp;увидят</em></h1>
+    <p class="lead">Небольшая группа, в&nbsp;которой мы работаем с&nbsp;личными историями через театр. Вы рассказываете о&nbsp;том, что сейчас важно, а&nbsp;группа бережно проживает это вместе с&nbsp;вами и&nbsp;показывает вашу историю со&nbsp;стороны.</p>
+    <div class="cta">
+      <a class="btn btn-pri" href="#join">Оставить заявку</a>
+      <a class="btn btn-ghost" href="#how">Как это устроено</a>
+    </div>
+    <p class="hero-note">Актёрский опыт не&nbsp;нужен. Рассказывать — только когда захотите.</p>
+  </div>
+  <div class="circle" id="circle" role="img" aria-label="Группа сидит в круге, рассказчик сменяется по очереди">
+    <div class="floor"></div>
+    <div class="ring"></div>
+    <div class="c-center"><b>Каждый может стать рассказчиком</b><span>а остальные — теми, кто слушает</span></div>
+    <div class="bubble" id="bubble">Сейчас рассказывает</div>
+  </div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section class="sec" id="who">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">С чем приходят</p>
+      <h2 class="h2" style="margin-top:18px">Если вам знакомо хоть что-то из&nbsp;этого</h2>
+    </div>
+    <ul class="who">
+      <li><b>Накопилось, и&nbsp;не&nbsp;с&nbsp;кем поделиться</b><span>Хочется, чтобы выслушали без советов и&nbsp;оценок.</span></li>
+      <li><b>Вы далеко от&nbsp;дома</b><span>Переезд, другая страна, другой язык — и&nbsp;не&nbsp;хватает своих людей рядом.</span></li>
+      <li><b>Тревога и&nbsp;усталость</b><span>Сложно отпустить напряжение, мысли ходят по&nbsp;кругу.</span></li>
+      <li><b>Трудно выражать чувства</b><span>Эмоции держишь в&nbsp;себе, а&nbsp;тело зажато.</span></li>
+      <li><b>Хочется понять себя</b><span>Посмотреть на&nbsp;свою ситуацию со&nbsp;стороны и&nbsp;найти новый взгляд.</span></li>
+      <li><b>Хочется живого тепла</b><span>Круг людей, где можно быть собой, грустить и&nbsp;смеяться.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section class="sec" id="how" style="scroll-margin-top:60px">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Как это устроено</p>
+        <h2 class="h2" style="margin-top:18px">Одна встреча — четыре шага</h2>
+      </div>
+      <div class="body"><p class="lead">Театр здесь — форма, а&nbsp;не&nbsp;цель. Главное — чтобы человека услышали, а&nbsp;его опыт стал видимым и&nbsp;понятым.</p></div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h3>Разминка</h3><p>Мягко включаемся: тело, голос, внимание. Отпускаем дневные заботы и&nbsp;оказываемся здесь и&nbsp;сейчас.</p></div>
+      <div class="step"><span class="n">2</span><h3>Круг историй</h3><p>Каждый может рассказать о&nbsp;том, что с&nbsp;ним происходит: радость, тревогу, воспоминание, вчерашний случай.</p></div>
+      <div class="step key"><span class="n">3</span><h3>История на&nbsp;сцене</h3><p>Участники группы под живую музыку играют рассказанное. Рассказчик видит свою историю со&nbsp;стороны.</p></div>
+      <div class="step"><span class="n">4</span><h3>Обсуждение</h3><p>Делимся, что откликнулось. Ведущая помогает бережно завершить встречу.</p></div>
+    </div>
+
+    <div class="why">
+      <div>
+        <p class="eyebrow">Почему через театр</p>
+        <p class="big" style="margin-top:18px">Когда видишь свою историю со&nbsp;стороны, она перестаёт быть только твоей ношей.</p>
+      </div>
+      <div class="body">
+        <p>Рассказать — уже облегчение. А&nbsp;увидеть, как другие люди с&nbsp;уважением проживают твой опыт, даёт расстояние и&nbsp;новый взгляд: «я не&nbsp;один», «это можно пережить», «вот как это выглядит».</p>
+        <p class="m">Метод, на&nbsp;котором построена группа, называется плейбэк-театр. Его используют в&nbsp;психологической работе, в&nbsp;сообществах и&nbsp;в&nbsp;помогающих практиках по&nbsp;всему миру. Группу ведёт психолог и&nbsp;психотерапевт, поэтому театр здесь всегда работает на&nbsp;человека.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIVES ============ -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Что даёт группа</p>
+    <h2 class="h2" style="margin-top:18px">Что уносят с&nbsp;собой участники</h2>
+    <div class="gives">
+      <div class="give"><h3>Вас слышат</h3><p>Без советов, оценок и&nbsp;«а&nbsp;вот у&nbsp;меня». Просто внимание к&nbsp;вашей истории.</p></div>
+      <div class="give"><h3>Взгляд со&nbsp;стороны</h3><p>Ситуация, увиденная на&nbsp;сцене, часто открывается по-новому.</p></div>
+      <div class="give"><h3>Прожитые чувства</h3><p>Можно грустить, злиться, смеяться. Эмоциям есть место и&nbsp;выход.</p></div>
+      <div class="give"><h3>Поддержка группы</h3><p>Люди из&nbsp;разных стран, которые становятся своими.</p></div>
+      <div class="give"><h3>Лёгкость и&nbsp;спонтанность</h3><p>Зажимы уходят в&nbsp;игре. Становится легче быть собой и&nbsp;вне группы.</p></div>
+      <div class="give bonus"><h3>И&nbsp;навык плейбэка</h3><p>По&nbsp;ходу группы вы освоите основы плейбэк-театра и&nbsp;сможете играть истории других.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SAFETY ============ -->
+<section class="sec" id="safe" style="scroll-margin-top:60px">
+  <div class="wrap">
+    <div class="safe">
+      <div>
+        <p class="eyebrow">Безопасность</p>
+        <h2 class="h2" style="margin-top:18px">Здесь бережно</h2>
+        <p class="fine">Группа не&nbsp;заменяет индивидуальную терапию и&nbsp;не&nbsp;подходит в&nbsp;остром кризисе. Если вы не&nbsp;уверены, подходит ли вам формат, напишите Сандре до&nbsp;записи.</p>
+      </div>
+      <ul>
+        <li><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 018 0V10"/></svg><div><b>Конфиденциальность</b><span>Всё, что рассказано в&nbsp;группе, остаётся в&nbsp;группе. Встречи не&nbsp;записываются.</span></div></li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12h14"/><circle cx="12" cy="12" r="9"/></svg><div><b>Никто не&nbsp;обязан рассказывать</b><span>Можно сказать «пас» и&nbsp;просто быть рядом. Вы сами решаете, чем делиться.</span></div></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.7-7 10-7 10z"/></svg><div><b>Играть не&nbsp;обязательно</b><span>Можно быть рассказчиком или зрителем. На&nbsp;сцену выходят, когда готовы.</span></div></li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-4 3.6-6 7-6s6.2 2 7 6"/></svg><div><b>Ведёт психолог</b><span>Сандра — психолог и&nbsp;клиент-центрированный психотерапевт. Она следит за&nbsp;состоянием каждого.</span></div></li>
+        <li><svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="2.6"/><circle cx="16" cy="9" r="2.6"/><path d="M3.5 19c.6-3 2.4-4.6 4.5-4.6s3.9 1.6 4.5 4.6M11.5 19c.6-3 2.4-4.6 4.5-4.6s3.9 1.6 4.5 4.6"/></svg><div><b>Небольшая постоянная группа</b><span>Одни и&nbsp;те же люди от&nbsp;первой встречи до&nbsp;последней — так появляется доверие.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOSTS ============ -->
+<section class="sec" id="hosts" style="scroll-margin-top:60px">
+  <div class="wrap">
+    <p class="eyebrow">Ведущие</p>
+    <h2 class="h2" style="margin-top:18px">Кто ведёт группу</h2>
+    <div class="hosts">
+      <article class="host">
+        <img src="/media/sandra.jpg" alt="Сандра Розанова">
+        <div>
+          <h3>Сандра Розанова</h3>
+          <p class="role">Психолог · клиент-центрированный психотерапевт · Монтевидео</p>
+          <p class="t">Больше 10 лет в&nbsp;плейбэке: актриса Playback01, соосновательница русскоязычного плейбэк-театра во&nbsp;Вьетнаме, ведёт Playback Core Training. Соединяет театр с&nbsp;вниманием к&nbsp;каждому участнику.</p>
+          <blockquote>«Сандра создаёт удивительно безопасное пространство, где не&nbsp;страшно быть собой»<b>Марина Куликова, Словакия</b></blockquote>
+        </div>
+      </article>
+      <article class="host">
+        <img src="/media/mikhail.jpg" alt="Михаил Чайлахян с гитарой">
+        <div>
+          <h3>Михаил Чайлахян</h3>
+          <p class="role">Музыкант плейбэк-театра · Батуми</p>
+          <p class="t">Музыкант Playback01 и&nbsp;участник батумского плейбэк-театра Friday. Играет вживую на&nbsp;каждой встрече: музыка подхватывает историю и&nbsp;помогает её прожить.</p>
+          <blockquote>«Музыка во&nbsp;время игры — это отдельный восторг!»<b>Анастасия, Венгрия</b></blockquote>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <p class="eyebrow">Отзывы участников</p>
+    <h2 class="h2" style="margin-top:18px">Что говорят те, кто уже был в&nbsp;группе</h2>
+    <div class="revs">
+      <figure class="rev big" style="margin:0"><p>«Хотела выгулять своего „внутреннего ребёнка“. А&nbsp;оказалось, что это очень хорошая, глубокая терапия для меня взрослой. Можно прожить эмоции, повеселиться, погрустить, поплакать без осуждений, с&nbsp;полным принятием тебя как человека»</p><cite>Марина Куликова, Словакия</cite></figure>
+      <figure class="rev" style="margin:0"><p>«Хотел научиться лучше управлять своими эмоциями, но получил намного больше. Я стал замечать, как отпускаю контроль и&nbsp;расслабляюсь. После многих лет терапии и&nbsp;коучинга такой мощный эффект стал настоящим сюрпризом»</p><cite>Данила Розанов, Уругвай</cite></figure>
+      <figure class="rev" style="margin:0"><p>«Располагающая и&nbsp;бережная обстановка убрала страхи. Это место, где можно пробовать новое. Ушла зажатость»</p><cite>Роман Райков, Вьетнам</cite></figure>
+      <figure class="rev" style="margin:0"><p>«У&nbsp;нас случилось маленькое тёплое комьюнити, и&nbsp;мы не&nbsp;захотели расходиться»</p><cite>Татьяна, Вьетнам</cite></figure>
+      <figure class="rev" style="margin:0"><p>«Это возможность самовыражения, расширение собственных границ. И&nbsp;возможность дать мозгу отдохнуть»</p><cite>Анастасия, Венгрия</cite></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMAT ============ -->
+<section class="sec" id="format">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Формат</p>
+        <h2 class="h2" style="margin-top:18px">Как проходят встречи</h2>
+      </div>
+      <div class="body"><p class="lead">Встречаемся в&nbsp;Zoom, подключиться можно из&nbsp;любой страны. Нужен только компьютер или планшет с&nbsp;камерой и&nbsp;место, где вас никто не&nbsp;потревожит.</p></div>
+    </div>
+    <div class="fmt">
+      <div class="f-i"><b>12 встреч</b><span>одна группа от&nbsp;начала до&nbsp;конца</span></div>
+      <div class="f-i"><b>1,5 часа</b><span>раз в&nbsp;неделю</span></div>
+      <div class="f-i"><b>Zoom</b><span>онлайн, из&nbsp;любой страны</span></div>
+      <div class="f-i tbd"><b>Даты и&nbsp;цена</b><span>уточняются</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq" style="scroll-margin-top:60px">
+  <div class="wrap">
+    <p class="eyebrow">Вопросы</p>
+    <h2 class="h2" style="margin-top:18px">Частые вопросы</h2>
+    <div class="faq">
+      <details><summary>Мне нужно уметь играть?</summary><p>Нет. Здесь не&nbsp;нужен актёрский опыт и&nbsp;не&nbsp;нужно «хорошо играть». Важно только желание слушать других и&nbsp;быть собой. Всему, что понадобится для игры, ведущие научат по&nbsp;ходу.</p></details>
+      <details><summary>Обязательно рассказывать о&nbsp;себе?</summary><p>Нет. Вы сами решаете, чем делиться и&nbsp;когда. Можно начать с&nbsp;маленьких историй или просто слушать.</p></details>
+      <details><summary>Это психотерапия?</summary><p>Это групповая работа под руководством психолога и&nbsp;психотерапевта, где основной инструмент — театр личных историй. Она хорошо дополняет индивидуальную терапию, но не&nbsp;заменяет её.</p></details>
+      <details><summary>Кто узнает о&nbsp;моей истории?</summary><p>Только участники вашей группы. Встречи не&nbsp;записываются, а&nbsp;всё рассказанное остаётся внутри группы.</p></details>
+      <details><summary>Что нужно для встреч?</summary><p>Zoom с&nbsp;включённой камерой и&nbsp;спокойное место, где можно немного двигаться в&nbsp;кадре. Лучше подключаться с&nbsp;компьютера или планшета.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOIN ============ -->
+<section class="sec" id="join" style="scroll-margin-top:60px">
+  <div class="wrap">
+    <div class="join">
+      <div>
+        <p class="eyebrow">Запись</p>
+        <h2 class="h2" style="margin-top:18px">Оставьте заявку</h2>
+        <p class="lead" style="margin-top:18px">Сандра свяжется с&nbsp;вами, ответит на&nbsp;вопросы и&nbsp;расскажет о&nbsp;ближайшей группе. Заявка ни&nbsp;к&nbsp;чему не&nbsp;обязывает.</p>
+      </div>
+      <form id="join-form" novalidate>
+        <label class="f" for="f-name">Как к&nbsp;вам обращаться
+          <input id="f-name" name="name" autocomplete="name" maxlength="120" placeholder="Имя">
+        </label>
+        <label class="f" for="f-contact">Telegram, WhatsApp или email
+          <input id="f-contact" name="contact" maxlength="160" placeholder="@username, номер или почта">
+        </label>
+        <label class="f" for="f-msg">С&nbsp;чем хотелось&nbsp;бы прийти <small>— по&nbsp;желанию</small>
+          <textarea id="f-msg" name="msg" maxlength="600" placeholder="Можно пропустить. Это увидит только Сандра."></textarea>
+        </label>
+        <input type="text" id="f-web" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div><button class="btn btn-pri" type="submit" id="f-send">Отправить заявку</button></div>
+        <p class="note" id="form-note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="ct">
+      <div><b>Сандра Розанова</b><a href="https://t.me/sandra_playback" target="_blank" rel="noopener">Telegram · @sandra_playback</a><a href="https://wa.me/79801251558" target="_blank" rel="noopener">WhatsApp · +7 980 125-15-58</a></div>
+      <div><b>Михаил Чайлахян</b><a href="https://t.me/mimihaail" target="_blank" rel="noopener">Telegram · @mimihaail</a><a href="https://wa.me/995595047031" target="_blank" rel="noopener">WhatsApp · +995 595 047 031</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>Группа личных историй · playback.show</span><a href="#top" style="text-decoration:none">Наверх ↑</a></div></footer>
+
+<div class="sticky" id="sticky"><a class="btn btn-pri" href="#join">Оставить заявку</a></div>
+
+<script>
+(function () {
+  var reduce = false; try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+  /* ---------- the circle: storyteller moves around ---------- */
+  var box = document.getElementById('circle'), bubble = document.getElementById('bubble');
+  var N = 8, people = [];
+  var FACE = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.6"/><path d="M5.5 20c.8-4 3.4-6 6.5-6s5.7 2 6.5 6"/></svg>';
+  for (var i = 0; i < N; i++) {
+    var a = -Math.PI / 2 + i * 2 * Math.PI / N, el = document.createElement('div');
+    el.className = 'p'; el.innerHTML = FACE;
+    el.style.left = (50 + 36 * Math.cos(a)) + '%'; el.style.top = (50 + 36 * Math.sin(a)) + '%';
+    box.appendChild(el); people.push({ el: el, a: a });
+  }
+  var cur = 0;
+  function show(k) {
+    people.forEach(function (p, j) { p.el.classList.toggle('on', j === k); p.el.classList.toggle('list', j !== k); });
+    var a = people[k].a;
+    bubble.style.left = (50 + 36 * Math.cos(a)) + '%';
+    bubble.style.top = (50 + 36 * Math.sin(a) - 9.5) + '%';
+  }
+  show(0);
+  if (!reduce) setInterval(function () { cur = (cur + 3) % N; show(cur); }, 3200);
+
+  /* ---------- sticky bar on phones ---------- */
+  var sticky = document.getElementById('sticky'), hero = document.querySelector('.hero'), join = document.getElementById('join');
+  function onScroll() {
+    var past = hero.getBoundingClientRect().bottom < 0, atJoin = join.getBoundingClientRect().top < innerHeight;
+    sticky.classList.toggle('on', past && !atJoin);
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* ---------- form → Google Sheet ---------- */
+  var FORM_URL = 'https://script.google.com/macros/s/AKfycbzKJtZ-RIpgM0kSjO_ekMdvAPp_Kj2ehYwUMNuM8jemb1_s1KSxWuqmQlAurObeF1hDpA/exec';
+  var form = document.getElementById('join-form'), note = document.getElementById('form-note'), btn = document.getElementById('f-send');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.elements.name.value.trim(), contact = form.elements.contact.value.trim(), msg = form.elements.msg.value.trim();
+    if (!name || !contact) { note.textContent = 'Напишите имя и контакт, чтобы Сандра могла вам ответить.'; (name ? form.elements.contact : form.elements.name).focus(); return; }
+    if (form.elements.website.value) return;
+    var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (err) {}
+    var what = 'ГРУППА ИСТОРИЙ' + (msg ? ' · ' + msg : '');
+    btn.disabled = true; note.textContent = 'Отправляем…';
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ what: what, name: name, contact: contact, cur: '', tz: tz }) })
+      .then(function () { form.reset(); note.textContent = 'Спасибо, ' + name + '! Заявка получена. Сандра напишет вам в ближайшие дни.'; })
+      .catch(function () { note.textContent = 'Не получилось отправить. Проверьте интернет и попробуйте ещё раз или напишите Сандре в Telegram @sandra_playback.'; })
+      .then(function () { btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
