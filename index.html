@@ -792,7 +792,7 @@ main{overflow-x:clip}
   var HM = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' };
   var DM = { weekday: 'short', day: 'numeric', month: 'short' };
   function fmt(d, tz, o) { try { return new Intl.DateTimeFormat('ru-RU', Object.assign(tz ? { timeZone: tz } : {}, o)).format(d); } catch (e) { return ''; } }
-  function hourOf(t) { return parseInt(t.slice(0, 2), 10) || 12; }
+  function hourOf(t) { var h = parseInt(t.slice(0, 2), 10); return isNaN(h) ? 12 : h % 24; }
   function partOf(h) { return h < 5 ? 'ночь' : h < 12 ? 'утро' : h < 18 ? 'день' : h < 23 ? 'вечер' : 'ночь'; }
   function plural(n, a, b, c) { var m10 = n % 10, m100 = n % 100; if (m10 === 1 && m100 !== 11) return a; if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return b; return c; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
