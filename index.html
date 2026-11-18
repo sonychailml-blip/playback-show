@@ -711,7 +711,7 @@ main{overflow-x:clip}
         <label class="opt"><input type="radio" name="what" value="monthly"><span><b>Курс с оплатой по месяцам</b><small>12 встреч · 3 × <span data-price="9500|95"></span>: в декабре, январе и феврале</small></span></label>
       </fieldset>
       <div class="field"><label for="f-name">Ваше имя</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="120"></div>
-      <div class="field"><label for="f-mail">Email <span class="opt-l">— по желанию</span></label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="you@mail.com" maxlength="160"></div>
+      <div class="field"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="you@mail.com" required maxlength="160"></div>
       <div class="field"><label for="f-msgr">Telegram или WhatsApp</label><input id="f-msgr" name="messenger" type="text" placeholder="@username или +995 …" required maxlength="160"></div>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div><button class="btn arrow" type="submit" id="f-send">Включить камеру<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F0F0F" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></div>
@@ -959,9 +959,10 @@ main{overflow-x:clip}
     e.preventDefault();
     var name = form.elements.name.value.trim(), email = form.elements.email.value.trim(), msgr = form.elements.messenger.value.trim();
     if (!name) { note.textContent = 'Пожалуйста, напишите, как к вам обращаться.'; form.elements.name.focus(); return; }
+    if (!email) { note.textContent = 'Пожалуйста, напишите ваш email.'; form.elements.email.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Похоже, в email опечатка. Проверьте адрес.'; form.elements.email.focus(); return; }
     if (!msgr) { note.textContent = 'Пожалуйста, оставьте Telegram или WhatsApp: через него мы пришлём ссылку на оплату и Zoom.'; form.elements.messenger.focus(); return; }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Похоже, в email опечатка. Проверьте адрес или оставьте поле пустым.'; form.elements.email.focus(); return; }
-    var contact = msgr + (email ? ' · ' + email : '');
+    var contact = msgr + ' · ' + email;
     if (form.elements.website.value) return;   // bot trap
     var picked = form.querySelector('input[name="what"]:checked');
     var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (err) {}

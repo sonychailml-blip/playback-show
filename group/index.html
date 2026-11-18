@@ -438,7 +438,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
         <label class="f" for="f-name">Как к&nbsp;вам обращаться
           <input id="f-name" name="name" autocomplete="name" maxlength="120" placeholder="Имя">
         </label>
-        <label class="f" for="f-mail">Email <small>— по&nbsp;желанию</small>
+        <label class="f" for="f-mail">Email
           <input id="f-mail" name="email" type="email" autocomplete="email" maxlength="160" placeholder="you@mail.com">
         </label>
         <label class="f" for="f-msgr">Telegram или WhatsApp
@@ -504,9 +504,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     e.preventDefault();
     var name = form.elements.name.value.trim(), email = form.elements.email.value.trim(), msgr = form.elements.messenger.value.trim(), msg = form.elements.msg.value.trim();
     if (!name) { note.textContent = 'Напишите, как к вам обращаться.'; form.elements.name.focus(); return; }
+    if (!email) { note.textContent = 'Напишите ваш email.'; form.elements.email.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Похоже, в email опечатка. Проверьте адрес.'; form.elements.email.focus(); return; }
     if (!msgr) { note.textContent = 'Оставьте Telegram или WhatsApp, чтобы Сандра могла вам написать.'; form.elements.messenger.focus(); return; }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Похоже, в email опечатка. Проверьте адрес или оставьте поле пустым.'; form.elements.email.focus(); return; }
-    var contact = msgr + (email ? ' · ' + email : '');
+    var contact = msgr + ' · ' + email;
     if (form.elements.website.value) return;
     var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (err) {}
     var what = 'ГРУППА ИСТОРИЙ' + (msg ? ' · ' + msg : '');
