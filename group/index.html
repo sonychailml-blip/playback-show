@@ -438,8 +438,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
         <label class="f" for="f-name">Как к&nbsp;вам обращаться
           <input id="f-name" name="name" autocomplete="name" maxlength="120" placeholder="Имя">
         </label>
-        <label class="f" for="f-contact">Telegram, WhatsApp или email
-          <input id="f-contact" name="contact" maxlength="160" placeholder="@username, номер или почта">
+        <label class="f" for="f-mail">Email <small>— по&nbsp;желанию</small>
+          <input id="f-mail" name="email" type="email" autocomplete="email" maxlength="160" placeholder="you@mail.com">
+        </label>
+        <label class="f" for="f-msgr">Telegram или WhatsApp
+          <input id="f-msgr" name="messenger" maxlength="160" placeholder="@username или номер">
         </label>
         <label class="f" for="f-msg">С&nbsp;чем хотелось&nbsp;бы прийти <small>— по&nbsp;желанию</small>
           <textarea id="f-msg" name="msg" maxlength="600" placeholder="Можно пропустить. Это увидит только Сандра."></textarea>
@@ -499,13 +502,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
   var form = document.getElementById('join-form'), note = document.getElementById('form-note'), btn = document.getElementById('f-send');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var name = form.elements.name.value.trim(), contact = form.elements.contact.value.trim(), msg = form.elements.msg.value.trim();
-    if (!name || !contact) { note.textContent = 'Напишите имя и контакт, чтобы Сандра могла вам ответить.'; (name ? form.elements.contact : form.elements.name).focus(); return; }
+    var name = form.elements.name.value.trim(), email = form.elements.email.value.trim(), msgr = form.elements.messenger.value.trim(), msg = form.elements.msg.value.trim();
+    if (!name) { note.textContent = 'Напишите, как к вам обращаться.'; form.elements.name.focus(); return; }
+    if (!msgr) { note.textContent = 'Оставьте Telegram или WhatsApp, чтобы Сандра могла вам написать.'; form.elements.messenger.focus(); return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Похоже, в email опечатка. Проверьте адрес или оставьте поле пустым.'; form.elements.email.focus(); return; }
+    var contact = msgr + (email ? ' · ' + email : '');
     if (form.elements.website.value) return;
     var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (err) {}
     var what = 'ГРУППА ИСТОРИЙ' + (msg ? ' · ' + msg : '');
     btn.disabled = true; note.textContent = 'Отправляем…';
-    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ what: what, name: name, contact: contact, cur: '', tz: tz }) })
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ what: what, name: name, email: email, messenger: msgr, contact: contact, cur: '', tz: tz }) })
       .then(function () { form.reset(); note.textContent = 'Спасибо, ' + name + '! Заявка получена. Сандра напишет вам в ближайшие дни.'; })
       .catch(function () { note.textContent = 'Не получилось отправить. Проверьте интернет и попробуйте ещё раз или напишите Сандре в Telegram @sandra_playback.'; })
       .then(function () { btn.disabled = false; });
