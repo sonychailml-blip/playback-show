@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://playback.show/media/og-course.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Онлайн-курс плейбэк-театра: девять окон Zoom с участниками">
+<meta property="og:image:alt" content="Онлайн-курс плейбэк-театра: окна Zoom с ведущими">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#6638E8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -360,6 +360,8 @@ h1{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(44px,7.6vw,1
 .join{display:flex;flex-wrap:wrap;gap:48px 72px;align-items:stretch;padding:clamp(24px,4vw,48px);border-radius:40px;background:var(--soft)}
 .join-pic{flex:1 1 420px;position:relative;overflow:hidden;min-height:360px;border-radius:28px;background:var(--white)}
 .join-pic img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.join-pic{background:#F9FAFF;align-self:center;aspect-ratio:1400/1154;min-height:0;height:auto}
+.join-pic img{object-fit:cover;object-position:50% 50%}
 .join-pic .drw{width:16%}
 .join-pic .rod{position:absolute;left:0;right:0;top:0;height:26px;border-bottom:1.5px solid var(--ink);background:var(--white)}
 .join-pic .badge{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:max-content;max-width:76%;margin:0;padding:10px 20px;border-radius:999px;background:var(--y);text-align:center;font-family:var(--head);font-weight:600;font-size:clamp(14px,1.8vw,20px);letter-spacing:-.02em}
@@ -409,6 +411,14 @@ footer .wrap{padding-top:28px;padding-bottom:40px}
 .theme-sw i{display:block;width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
 .theme-sw .nm{margin-left:4px}
 @media (max-width:640px){.theme-sw{left:8px;right:8px;bottom:84px;justify-content:center;padding:4px 6px}.theme-sw .nm,.theme-sw .lb{display:none}}
+/* four big windows */
+#grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#grid .phr{font-size:clamp(14px,2.3vw,32px);padding:0 10%}
+#grid .you{font-size:clamp(13px,2vw,28px);inset:12px}
+#grid .tp{font-size:clamp(10px,1.1vw,15px);padding:3px 10px;top:10px;right:10px}
+#grid .tl{font-size:clamp(10px,1.15vw,15px);padding:3px 11px;left:10px;bottom:10px}
+#grid .eqb{left:10px;top:10px;height:22px;padding:4px 9px}
+@media (max-width:640px){#grid .phr{font-size:12.5px;padding:0 7%}#grid .you{font-size:12px;inset:5px}#grid .tp,#grid .tl{font-size:9.5px;padding:1px 6px}#grid .tp{top:5px;right:5px}#grid .tl{left:5px;bottom:5px}#grid .eqb{left:5px;top:5px;height:14px;padding:2px 5px}}
 /* scroll reveal (only when JS turned it on) */
 .js-anim [data-r]{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
 .js-anim [data-r].in{opacity:1;transform:none}
@@ -678,7 +688,7 @@ main{overflow-x:clip}
 <section class="wrap" id="join" style="padding-top:120px;padding-bottom:80px">
   <div class="join">
     <div class="join-pic" data-r>
-      <img src="media/group.jpg" alt="Актёры плейбэк-театра с ноутбуками" loading="lazy">
+      <img src="media/join_arms.jpg" alt="Актриса плейбэк-театра раскинула руки, будто обнимает" loading="lazy">
       <p class="badge">Ваш выход — из любой точки мира</p>
     </div>
     <form class="form" id="join-form" novalidate data-r style="--d:.12s">
@@ -771,15 +781,10 @@ main{overflow-x:clip}
   /* ---------- 9 windows ---------- */
   var phrases = ['Зритель из другой страны — в первом ряду', 'Сцена, до которой не нужно лететь', 'Играем из своей комнаты — и это часть истории', 'Камера видит то, что не видно из зала', 'Одна история — много часовых поясов', 'Можно прийти в тапочках. Чувства — настоящие', 'Свои люди — даже на другом конце света'];
   var people = [
-    { kind: 'vid', role: 'Участница', vid: 'media/hair.mp4', poster: 'media/hair_poster.jpg' },
-    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'media/sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем' },
-    { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar' },
-    { kind: 'img', role: 'Участница', img: 'media/olga.jpg', pos: '50% 40%', alt: 'Участница курса смеётся в окне Zoom' },
-    { kind: 'img', role: 'Рассказчица', speaker: true, img: 'media/anna.jpg', pos: '50% 35%', alt: 'Рассказчица улыбается в окне Zoom' },
-    { kind: 'vid', role: 'Актриса', vid: 'media/scarf.mp4', poster: 'media/scarf_poster.jpg' },
     { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'media/mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными' },
-    { kind: 'vid', role: 'Актриса', vid: 'media/candle.mp4', poster: 'media/candle_poster.jpg' },
-    { kind: 'you', role: 'Вы' }
+    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'media/sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем' },
+    { kind: 'you', role: 'Вы' },
+    { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar' }
   ];
   var grid = document.getElementById('grid');
   var refs = people.map(function (p, i) {
@@ -789,7 +794,7 @@ main{overflow-x:clip}
     if (p.kind === 'vid') h = '<video data-auto src="' + p.vid + '" poster="' + p.poster + '" autoplay muted loop playsinline preload="metadata" aria-label="' + esc(p.role) + ' в окне Zoom"></video>';
     if (p.kind === 'img') h = '<img src="' + p.img + '" alt="' + esc(p.alt) + '" style="object-position:' + p.pos + '">';
     if (p.kind === 'phrase') h = '<p class="phr"></p>';
-    if (p.kind === 'you') h = '<a class="you" href="#join"><b>+</b>Здесь может быть ваше окно</a>';
+    if (p.kind === 'you') h = '<a class="you" href="#join"><b>+</b>Здесь может быть ваша история</a>';
     if (p.eq) h += '<span class="eqb" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
     var label = p.kind === 'you' ? 'Вы<span class="x"> · ваш город</span>' : esc(p.role.split(' · ')[0]) + '<span class="x">' + (p.role.indexOf(' · ') > 0 ? ' · ' + esc(p.role.split(' · ')[1]) : '') + (p.city ? ' · ' + esc(p.city) : '') + '</span>';
     h += '<span class="tp"></span><span class="tl">' + label + '</span>';
