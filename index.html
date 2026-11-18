@@ -360,8 +360,10 @@ h1{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(44px,7.6vw,1
 .join{display:flex;flex-wrap:wrap;gap:48px 72px;align-items:stretch;padding:clamp(24px,4vw,48px);border-radius:40px;background:var(--soft)}
 .join-pic{flex:1 1 420px;position:relative;overflow:hidden;min-height:360px;border-radius:28px;background:var(--white)}
 .join-pic img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-.join-pic{background:#F9FAFF;align-self:center;aspect-ratio:1400/1154;min-height:0;height:auto}
-.join-pic img{object-fit:cover;object-position:50% 50%}
+.join{background:transparent;padding:0;align-items:center}
+.join-pic{background:transparent;border-radius:0;align-self:center;aspect-ratio:1400/1154;min-height:0;height:auto;overflow:visible}
+.join-pic img{object-fit:contain;object-position:50% 50%;-webkit-mask-image:linear-gradient(to bottom,#000 58%,transparent 86%);mask-image:linear-gradient(to bottom,#000 58%,transparent 86%)}
+.form{background:var(--soft);border-radius:32px;padding:clamp(24px,3.5vw,44px)}
 .join-pic .drw{width:16%}
 .join-pic .rod{position:absolute;left:0;right:0;top:0;height:26px;border-bottom:1.5px solid var(--ink);background:var(--white)}
 .join-pic .badge{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:max-content;max-width:76%;margin:0;padding:10px 20px;border-radius:999px;background:var(--y);text-align:center;font-family:var(--head);font-weight:600;font-size:clamp(14px,1.8vw,20px);letter-spacing:-.02em}
