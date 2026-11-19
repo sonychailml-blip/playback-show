@@ -371,6 +371,10 @@ footer .wrap{border-top:0;padding-top:0}
 @media (max-width:350px){.h1{font-size:38px}.logo{font-size:16px;gap:8px}.top .wrap{gap:12px}.top .btn{padding:0 14px}}
 .ph-img.has-photo{padding:0;border:0;background:var(--card)}
 .ph-img.has-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.lift-logo{height:64px;width:auto;align-self:flex-start}
+.gives{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){.gives{grid-template-columns:repeat(2,minmax(0,1fr))}.give.give-first{grid-column:1/-1}}
+@media (max-width:520px){.gives{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -414,9 +418,9 @@ footer .wrap{border-top:0;padding-top:0}
       </div>
       <div class="day" aria-label="Программа дня">
         <div class="day-head"><span class="eyebrow">12 декабря · Программа</span></div>
-        <a class="day-row" href="#intensive"><time>12:30–17:00</time><div><strong>Импро-интенсив</strong><span>три ведущих · 25 мест · 60 ₾</span></div></a>
+        <a class="day-row" href="#intensive"><time>12:30–17:00</time><div><strong>Импро-интенсив</strong><span>три ведущих · 25&nbsp;мест · 60&nbsp;₾</span></div></a>
         <a class="day-row" href="#show-1"><time>18:00</time><div><strong>Батумский плейбэк-театр Friday</strong><span>спектакль по историям зрителей</span></div></a>
-        <a class="day-row" href="#show-2"><time>20:00</time><div><strong>Лев Ушаков</strong><span>соло</span></div></a>
+        <a class="day-row" href="#show-2"><time>20:00</time><div><strong>Лев Ушаков</strong><span>соло «Где и&nbsp;чему я&nbsp;учился?»</span></div></a>
         <a class="day-row" href="#show-3"><time>21:00</time><div><strong>Impro Batumi</strong><span>комедийная импровизация · премьера · ведущий Александр Попов</span></div></a>
       </div>
     </div>
@@ -425,7 +429,7 @@ footer .wrap{border-top:0;padding-top:0}
 
 <!-- ============ PHOTOS ============ -->
 <section class="wrap mosaic" aria-label="Фото">
-  <figure class="ph-img big has-photo"><img src="media/mosaic-stage.jpg" width="1800" height="926" alt="Двое импровизаторов играют сцену на фоне красного занавеса" style="object-position:48% 50%"></figure>
+  <figure class="ph-img big"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.4"/></svg><figcaption>Сюда: большое живое фото, где много людей взаимодействуют друг с&nbsp;другом</figcaption></figure>
   <figure class="ph-img has-photo"><img src="media/mosaic-hall.jpg" width="1400" height="934" loading="lazy" alt="Зрители в зале поднимают руки" style="object-position:58% 40%"></figure>
   <figure class="ph-img "><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.4"/></svg><figcaption>Сюда: участники интенсива в&nbsp;кругу</figcaption></figure>
 </section>
@@ -449,10 +453,11 @@ footer .wrap{border-top:0;padding-top:0}
 <section class="sec" style="padding-top:24px">
   <div class="wrap">
     <div data-r>
-      <p class="eyebrow">Что она даёт любому человеку</p>
-      <h2 class="h2" style="margin-top:18px">Раскрепощение!</h2>
+      <p class="eyebrow">Польза импровизации</p>
+      <h2 class="h2" style="margin-top:18px">Что она даёт любому человеку</h2>
     </div>
     <div class="gives" id="gives" data-r>
+      <div class="give give-first tilt"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div><h3>Раскрепощение</h3><p>Уходит страх выглядеть глупо. Появляется свобода быть собой и&nbsp;пробовать новое — на&nbsp;сцене и&nbsp;в&nbsp;жизни.</p></div>
       <div class="give tilt"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8 8l2.6 7M16.4 7.6L13.4 15M8.2 7h7.6"/></svg></div><h3>Новые нейронные связи</h3><p>Новые механики и&nbsp;методы. Мозг учится находить нестандартные ходы.</p></div>
       <div class="give tilt"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c.6-3.2 2.6-5 5-5s4.4 1.8 5 5M14 14.5c.9-.6 1.9-.9 3-.9 2 0 3.5 1.5 4 4.4"/></svg></div><h3>Новые знакомства</h3><p>За&nbsp;один день — десятки сцен с&nbsp;людьми, которых вы видите впервые.</p></div>
       <div class="give tilt"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 5 5.6.6-4.2 3.8 1.2 5.5L12 15.2 7 17.9l1.2-5.5L4 8.6 9.6 8z"/></svg></div><h3>Командные и&nbsp;лидерские качества</h3><p>Когда вести, когда следовать и&nbsp;как прийти к&nbsp;результату вместе.</p></div>
@@ -534,9 +539,11 @@ footer .wrap{border-top:0;padding-top:0}
         <blockquote class="hq">«Для меня импровизация — это возможность увидеть магию „вне Хогвартса“ на&nbsp;сцене, посмеяться, почувствовать единение актёров и&nbsp;зрителей. Это что-то из&nbsp;детства, когда мы брали палку и&nbsp;представляли, что у&nbsp;нас в&nbsp;руках древний меч или мощнейший космический лазер»</blockquote>
       </article>
       <article class="host" data-r>
-        <div class="ph"><img src="media/ushakov.jpg" alt="Лев Ушаков на сцене"><span class="tag tbd tilt">Жанр уточняется</span></div>
+        <div class="ph"><img src="media/ushakov.jpg" alt="Лев Ушаков на сцене"><span class="tag tilt">Сценические состояния</span></div>
         <h3>Лев Ушаков</h3>
-        <p>Описание блока появится совсем скоро.</p>
+        <p class="role">Режиссёр, перформер, тренер творческих состояний</p>
+        <p>Основатель Лаборатории импровизации и&nbsp;форум-театра ЛИФТ в&nbsp;Батуми. Выступал и&nbsp;ставил представления в&nbsp;11&nbsp;странах.</p>
+        <p>На&nbsp;интенсиве — 5&nbsp;регистров импровизации, управляя которыми каждый сможет повысить своё мастерство и&nbsp;получать удовольствие от&nbsp;со-творчества.</p>
       </article>
     </div>
 
@@ -588,8 +595,13 @@ footer .wrap{border-top:0;padding-top:0}
         <figure class="ph-img on-stage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.4"/></svg><figcaption>Сюда: Лев на&nbsp;сцене, соло</figcaption></figure>
         <time>20:00</time>
         <p class="who">Лев Ушаков</p>
-        <h3>Соло</h3>
-        <p>Один импровизатор, одна сцена и&nbsp;всё, что родится прямо здесь.</p>
+        <h3>«Где и&nbsp;чему я&nbsp;учился?»</h3>
+        <p class="host-line">Сольный спектакль</p>
+        <p>Каждый из&nbsp;нас мнооого чему, где и&nbsp;как учился: наукам, борщ готовить, за&nbsp;себя постоять, промолчать, жить на&nbsp;Острове. Что используем из&nbsp;нажитого, а&nbsp;что пора вспомнить с&nbsp;улыбкой и&nbsp;смехом? Будет смешно, грустно, местами рефлексивно и&nbsp;точно душевно.</p>
+        <details class="more">
+          <summary><span class="m-open">Подробнее</span><span class="m-close">Свернуть</span></summary>
+          <p>Премьера состоялась в&nbsp;Тбилиси в&nbsp;2024&nbsp;году, позже спектакль показывали в&nbsp;Таиланде и&nbsp;Вьетнаме.</p>
+        </details>
         <a class="btn" href="#tickets" data-buy="s2">Купить билет · 20&nbsp;₾</a>
       </article>
       <article class="show" id="show-3" data-r>
@@ -665,6 +677,7 @@ footer .wrap{border-top:0;padding-top:0}
   <div class="plogos">
     <figure><img class="lg-l fr-logo" src="media/friday-dark.png" alt="Батумский плейбэк-театр Friday"><img class="lg-d fr-logo" src="media/friday-light.png" alt="" aria-hidden="true"><figcaption>Батумский плейбэк-театр</figcaption></figure>
     <figure><img class="lg-l mp-logo" src="media/musicpoint-dark.png" alt="Music Point"><img class="lg-d mp-logo" src="media/musicpoint-light.png" alt="" aria-hidden="true"><figcaption>Площадка</figcaption></figure>
+    <figure><img class="lg-l lift-logo" src="media/lift-dark.png" alt="ЛИФТ — Лаборатория импровизации и форум-театра"><img class="lg-d lift-logo" src="media/lift-light.png" alt="" aria-hidden="true"><figcaption>Лаборатория импровизации и&nbsp;форум-театра</figcaption></figure>
   </div>
 </section>
 </main>
