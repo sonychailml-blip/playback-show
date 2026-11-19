@@ -536,10 +536,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
       </div>
       <form id="int-form" novalidate>
         <label class="f" for="i-name">Как вас зовут
-          <input id="i-name" name="name" autocomplete="name" placeholder="Имя">
+          <input id="i-name" name="name" autocomplete="name" placeholder="Имя" required aria-required="true">
         </label>
         <label class="f" for="i-contact">Telegram, WhatsApp или телефон
-          <input id="i-contact" name="contact" placeholder="@username или +995…">
+          <input id="i-contact" name="contact" placeholder="@username или +995…" required aria-required="true">
         </label>
         <div class="hp" aria-hidden="true"><label for="i-web">Сайт</label><input id="i-web" name="website" tabindex="-1" autocomplete="off"></div>
         <button class="btn btn-hi" id="i-send" type="submit" style="margin-top:8px">Отправить заявку</button>
@@ -690,9 +690,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 
   /* ---------- sending ---------- */
   var FORM_URL = 'https://script.google.com/macros/s/AKfycbytExuDhru27Nkm-NxDLgrwUXKFceSsgI5JhbWOoMzSnRH7T3gfCfu0vITdqwBmx4Y/exec';
-  function tz() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; } }
-  function send(what, name, contact) {
-    return fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ what: what, name: name, contact: contact, cur: 'GEL', tz: tz() }) });
+  function send(name, contact) {
+    return fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ name: name, contact: contact }) });
   }
   var FAIL = 'Не получилось отправить. Проверьте интернет и попробуйте ещё раз или напишите Михаилу в Telegram @mimihaail.';
 
@@ -704,7 +703,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
     if (!name || !contact) { iN.textContent = 'Напишите имя и контакт, чтобы мы могли вам ответить.'; (name ? iF.elements.contact : iF.elements.name).focus(); return; }
     if (iF.elements.website.value) return;
     iB.disabled = true; iN.textContent = 'Отправляем…';
-    send('ИМПРО · Интенсив 12:30–17:00 · 60 ₾', name, contact)
+    send(name, contact)
       .then(function () { iF.reset(); iN.textContent = 'Спасибо, ' + name + '! Заявка у нас. Мы напишем вам в ближайшее время.'; })
       .catch(function () { iN.textContent = FAIL; })
       .then(function () { iB.disabled = false; });
