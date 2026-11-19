@@ -302,7 +302,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 @media (prefers-reduced-motion:reduce){.js .draw path{animation:none}.slot.flip .val{animation:none}.tilt,.give.tilt{transition:none}}
 
 .why-line{font:600 clamp(20px,2.2vw,24px)/1.35 var(--display);letter-spacing:-.01em;padding-top:20px;border-top:1px solid var(--line)}
-.life{grid-template-columns:repeat(2,minmax(0,1fr))}
 .passes{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;margin-top:18px}
 @media (max-width:860px){.passes{grid-template-columns:1fr}}
 .evening-all.special{background:var(--stage-soft);color:var(--stage-fg);box-shadow:inset 0 0 0 2px var(--hi)}
@@ -360,6 +359,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 .js [data-r]{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .js [data-r].pre{transform:translateY(18px)}
 @media (prefers-reduced-motion:reduce){.js [data-r].pre{transform:none}.swap .w.out,.swap .w.in{animation:none}}
+/* spacing & alignment */
+.show-logo{height:54px}
+#contacts{padding-top:88px;padding-bottom:80px}
+.partners{padding-top:0}
+footer{padding-bottom:48px}
+footer .wrap{position:relative;border-top:0}
+footer .wrap::before{content:"";position:absolute;top:0;left:max(20px,env(safe-area-inset-left,0px));right:max(20px,env(safe-area-inset-right,0px));height:1px;background:var(--line)}
+.ea-h .nw{white-space:nowrap}
+@media (min-width:601px) and (max-width:900px){.ph-img.on-stage{aspect-ratio:16/9}}
+@media (max-width:760px){.sec{padding-block:72px}#contacts{padding-top:64px;padding-bottom:56px}footer{padding-bottom:120px}}
+@media (max-width:350px){.h1{font-size:38px}.logo{font-size:16px;gap:8px}.top .wrap{gap:12px}.top .btn{padding:0 14px}}
 </style>
 </head>
 <body>
@@ -601,13 +611,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
       <div class="evening-all">
         <div>
           <p class="ea-k">Весь вечер · 18:00, 20:00, 21:00</p>
-          <p class="ea-h">Три спектакля — <b>50&nbsp;₾</b> <s>60&nbsp;₾</s></p>
+          <p class="ea-h">Три спектакля — <span class="nw"><b>50&nbsp;₾</b> <s>60&nbsp;₾</s></span></p>
         </div>
         <a class="btn btn-ink" href="#tickets" data-buy="all">Купить весь вечер</a>
       </div>
       <div class="evening-all special">
         <div>
-          <p class="ea-k">Отдельная категория · всего 5 билетов</p>
+          <p class="ea-k">Отдельная категория · всего&nbsp;5&nbsp;билетов</p>
           <p class="ea-h">Три спектакля — <b>30&nbsp;₾</b></p>
         </div>
         <a class="btn" href="#tickets" data-buy="special">Купить за&nbsp;30&nbsp;₾</a>
@@ -634,13 +644,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 </section>
 
 <!-- ============ CONTACTS ============ -->
-<section class="sec rule" id="contacts" style="padding-top:88px">
+<section class="sec rule" id="contacts">
   <div class="wrap">
     <p class="eyebrow">Место и контакты</p>
     <h2 class="h2" style="margin-top:18px">Где нас найти</h2>
     <div class="contacts">
       <div class="venue-row">
-        <a class="contact venue" href="https://www.google.com/maps/search/?api=1&amp;query=Music+Point+Orange+Batumi" target="_blank" rel="noopener"><img class="venue-logo" src="media/musicpoint-dark.png" alt="Music Point"><span>12 декабря · Music Point Orange · открыть карту</span><strong>Батуми, ул.&nbsp;Э.&nbsp;Такаишвили, 44–50</strong></a>
+        <a class="contact venue" href="https://www.google.com/maps/search/?api=1&amp;query=Music+Point+Orange+Batumi" target="_blank" rel="noopener"><img class="venue-logo" src="media/musicpoint-dark.png" alt="Music Point"><span>12 декабря · Music Point Orange · открыть&nbsp;карту</span><strong>Батуми, ул.&nbsp;Э.&nbsp;Такаишвили, 44–50</strong></a>
         <a class="venue-photo" href="https://www.google.com/maps/search/?api=1&amp;query=Music+Point+Orange+Batumi" target="_blank" rel="noopener"><img src="media/venue-entrance.jpg" width="680" height="460" loading="lazy" alt="Вход в Music Point Orange: стеклянная дверь в оранжевой рамке"><span>Вход с улицы</span></a>
       </div>
       <a class="contact" href="https://t.me/mimihaail" target="_blank" rel="noopener"><span>Telegram · Михаил</span><strong>@mimihaail</strong></a>
@@ -658,7 +668,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 </section>
 </main>
 
-<footer><div class="wrap"><span>День импровизации · 12 декабря · Music Point Orange, Батуми</span><div class="pal" id="pal-foot" role="group" aria-label="Палитра"><button type="button" data-pal="batumi" aria-pressed="true"><i style="background:linear-gradient(135deg,#0E6E7C 50%,#FFC53D 50%)"></i>Батуми</button><button type="button" data-pal="electric" aria-pressed="false"><i style="background:linear-gradient(135deg,#6638E8 50%,#C7FF35 50%)"></i>Electric</button></div></div></footer>
+<footer><div class="wrap"><span>День импровизации · 12&nbsp;декабря · Music&nbsp;Point&nbsp;Orange,&nbsp;Батуми</span><div class="pal" id="pal-foot" role="group" aria-label="Палитра"><button type="button" data-pal="batumi" aria-pressed="true"><i style="background:linear-gradient(135deg,#0E6E7C 50%,#FFC53D 50%)"></i>Батуми</button><button type="button" data-pal="electric" aria-pressed="false"><i style="background:linear-gradient(135deg,#6638E8 50%,#C7FF35 50%)"></i>Electric</button></div></div></footer>
 
 
 
