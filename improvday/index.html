@@ -689,7 +689,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
   /* ---------- sending ---------- */
-  var FORM_URL = 'https://script.google.com/macros/s/AKfycbzKJtZ-RIpgM0kSjO_ekMdvAPp_Kj2ehYwUMNuM8jemb1_s1KSxWuqmQlAurObeF1hDpA/exec';
+  var FORM_URL = 'https://script.google.com/macros/s/AKfycbytExuDhru27Nkm-NxDLgrwUXKFceSsgI5JhbWOoMzSnRH7T3gfCfu0vITdqwBmx4Y/exec';
   function tz() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; } }
   function send(what, name, contact) {
     return fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ what: what, name: name, contact: contact, cur: 'GEL', tz: tz() }) });
