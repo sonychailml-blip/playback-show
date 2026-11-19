@@ -326,9 +326,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 .ph-img.on-stage{margin:-28px -26px 6px;max-width:none;width:calc(100% + 52px);align-self:auto;border-radius:var(--r) var(--r) 0 0;aspect-ratio:4/3;min-height:0;border:0;border-bottom:1px solid var(--stage-line);
   background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 14px,rgba(255,255,255,.11) 14px 28px);color:rgba(255,255,255,.75)}
 .show{overflow:hidden}
-.venue-row{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+.venue-row{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px}
 .venue-row .contact.venue{grid-column:auto;justify-content:center}
-.venue-ph{min-height:180px}
+.venue-photo{position:relative;display:block;border-radius:22px;overflow:hidden;min-height:400px;background:var(--card)}
+.venue-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.venue-photo span{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(13,66,80,.82);color:#fff;font:500 14px/1.2 var(--text)}
+@media (max-width:700px){.venue-photo{min-height:0;aspect-ratio:1/1}}
 @media (max-width:700px){.venue-row{grid-template-columns:1fr}}
 
 .more{margin-top:-4px}
@@ -638,7 +641,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
     <div class="contacts">
       <div class="venue-row">
         <a class="contact venue" href="https://www.google.com/maps/search/?api=1&amp;query=Music+Point+Orange+Batumi" target="_blank" rel="noopener"><img class="venue-logo" src="media/musicpoint-dark.png" alt="Music Point"><span>12 декабря · Music Point Orange · открыть карту</span><strong>Батуми, ул.&nbsp;Э.&nbsp;Такаишвили, 44–50</strong></a>
-        <figure class="ph-img venue-ph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.4"/></svg><figcaption>Сюда: фото Music Point Orange — вход или зал</figcaption></figure>
+        <a class="venue-photo" href="https://www.google.com/maps/search/?api=1&amp;query=Music+Point+Orange+Batumi" target="_blank" rel="noopener"><img src="media/venue-entrance.jpg" width="760" height="830" loading="lazy" alt="Вход в Music Point Orange: стеклянная дверь в оранжевой рамке"><span>Вход с улицы</span></a>
       </div>
       <a class="contact" href="https://t.me/mimihaail" target="_blank" rel="noopener"><span>Telegram · Михаил</span><strong>@mimihaail</strong></a>
       <a class="contact" href="https://wa.me/995595047031" target="_blank" rel="noopener"><span>WhatsApp · Михаил</span><strong>+995 595 047 031</strong></a>
