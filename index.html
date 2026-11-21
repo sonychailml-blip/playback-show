@@ -832,8 +832,8 @@ main{overflow-x:clip}
   var phrases = ['Зритель из другой страны — в первом ряду', 'Сцена, до которой не нужно лететь', 'Играем из своей комнаты — и это часть истории', 'Камера видит то, что не видно из зала', 'Одна история — много часовых поясов', 'Можно прийти в тапочках. Чувства — настоящие', 'Свои люди — даже на другом конце света'];
   var people = [
     { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'media/mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными', o: 1 },
-    { kind: 'vid', role: 'Михаил', city: 'Батуми', tz: 'Asia/Tbilisi', vid: 'media/mikhail_hands.mp4', poster: 'media/mikhail_hands_poster.jpg', pos: '70% 50%', o: 3 },
-    { kind: 'vid', role: 'Сандра', city: 'Монтевидео', tz: 'America/Montevideo', vid: 'media/sandra_hands.mp4', poster: 'media/sandra_hands_poster.jpg', pos: '30% 50%', o: 4 },
+    { kind: 'vid', role: 'Актёр', tz: 'Asia/Tbilisi', vid: 'media/mikhail_hands.mp4', poster: 'media/mikhail_hands_poster.jpg', pos: '70% 50%', o: 3 },
+    { kind: 'vid', role: 'Актриса', tz: 'America/Montevideo', vid: 'media/sandra_hands.mp4', poster: 'media/sandra_hands_poster.jpg', pos: '30% 50%', o: 4 },
     { kind: 'you', role: 'Вы', o: 5 },
     { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar', o: 6 },
     { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'media/sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем', o: 2 }
@@ -844,7 +844,7 @@ main{overflow-x:clip}
     t.className = 'tile' + (p.speaker ? ' speaking' : '');
     if (p.o) t.style.setProperty('--o', p.o);
     var h = '';
-    if (p.kind === 'vid') h = '<video data-auto src="' + p.vid + '" poster="' + p.poster + '" autoplay muted loop playsinline preload="metadata" style="object-position:' + (p.pos || '50% 50%') + '" aria-label="' + esc(p.role) + ': руки тянутся навстречу в окне Zoom"></video>';
+    if (p.kind === 'vid') h = '<video data-auto src="' + p.vid + '" poster="' + p.poster + '" autoplay muted loop playsinline preload="metadata" style="object-position:' + (p.pos || '50% 50%') + '" aria-label="' + esc(p.role) + ': рука тянется навстречу партнёру в соседнем окне Zoom"></video>';
     if (p.kind === 'img') h = '<img src="' + p.img + '" alt="' + esc(p.alt) + '" style="object-position:' + p.pos + '">';
     if (p.kind === 'phrase') h = '<p class="phr"></p>';
     if (p.kind === 'you') h = '<a class="you" href="#join"><b>+</b>Здесь может быть ваша история</a>';
