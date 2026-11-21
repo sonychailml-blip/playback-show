@@ -606,7 +606,7 @@ footer .wrap{border-top:0;padding-top:0}
           <p>А&nbsp;может быть, вы&nbsp;сами однажды стали для кого-то самым неожиданным подарком?</p>
           <p>Приходите делиться историями. Мы&nbsp;будем слушать, отражать и&nbsp;проживать их&nbsp;вместе с&nbsp;вами на&nbsp;сцене.</p>
         </details>
-        <a class="btn" href="#tickets" data-buy="s1">Купить билет · 20&nbsp;₾</a>
+        <a class="btn" href="https://show4me.com/events/bolshoy-den-improvizats" target="_blank" rel="noopener" data-buy="s1">Купить билет · 20&nbsp;₾</a>
       </article>
       <article class="show" id="show-2" data-r>
         <figure class="ph-img on-stage has-photo"><img src="media/show-ushakov.jpg" width="1013" height="760" loading="lazy" alt="Лев Ушаков улыбается" style="object-position:30% 30%"></figure>
@@ -619,7 +619,7 @@ footer .wrap{border-top:0;padding-top:0}
           <summary><span class="m-open">Подробнее</span><span class="m-close">Свернуть</span></summary>
           <p>Премьера состоялась в&nbsp;Тбилиси в&nbsp;2024&nbsp;году, позже его показывали в&nbsp;Таиланде и&nbsp;Вьетнаме.</p>
         </details>
-        <a class="btn" href="#tickets" data-buy="s2">Купить билет · 20&nbsp;₾</a>
+        <a class="btn" href="https://show4me.com/events/bolshoy-den-improvizats" target="_blank" rel="noopener" data-buy="s2">Купить билет · 20&nbsp;₾</a>
       </article>
       <article class="show" id="show-3" data-r>
         <figure class="ph-img on-stage has-photo"><img src="media/show-impro.jpg" width="1500" height="820" loading="lazy" alt="Команда и участники Impro Batumi: большая весёлая группа позирует вечером на улице" style="object-position:50% 40%"></figure>
@@ -634,7 +634,7 @@ footer .wrap{border-top:0;padding-top:0}
           <p>Тут будет всё: смешанные эмоции, удивительные повороты и&nbsp;даже странные приключения. Ни&nbsp;мы, ни&nbsp;зрители не&nbsp;знаем, что произойдёт в&nbsp;следующую секунду, но именно люди из&nbsp;зала могут повлиять на&nbsp;то, что происходит на&nbsp;сцене, и&nbsp;стать частью нашей команды на&nbsp;этот вечер.</p>
           <p>Комедийная импровизация никогда не&nbsp;повторяется, поэтому вы увидите не&nbsp;только премьерное возвращение, но и&nbsp;неповторимую атмосферу!</p>
         </details>
-        <a class="btn" href="#tickets" data-buy="s3">Купить билет · 20&nbsp;₾</a>
+        <a class="btn" href="https://show4me.com/events/bolshoy-den-improvizats" target="_blank" rel="noopener" data-buy="s3">Купить билет · 20&nbsp;₾</a>
       </article>
     </div>
     <div class="passes" id="tickets" data-r>
@@ -643,14 +643,14 @@ footer .wrap{border-top:0;padding-top:0}
           <p class="ea-k">Весь вечер · 18:00, 20:00, 21:00</p>
           <p class="ea-h">Три представления&nbsp;— <span class="nw"><b>50&nbsp;₾</b> <s>60&nbsp;₾</s></span></p>
         </div>
-        <a class="btn btn-ink" href="#tickets" data-buy="all">Купить весь вечер</a>
+        <a class="btn btn-ink" href="https://show4me.com/events/bolshoy-den-improvizats" target="_blank" rel="noopener" data-buy="all">Купить весь вечер</a>
       </div>
       <div class="evening-all special">
         <div>
           <p class="ea-k">Отдельная категория · всего&nbsp;5&nbsp;билетов</p>
           <p class="ea-h">Три представления&nbsp;— <span class="nw"><b>30&nbsp;₾</b></span></p>
         </div>
-        <a class="btn" href="#tickets" data-buy="special">Купить за&nbsp;30&nbsp;₾</a>
+        <a class="btn" href="https://show4me.com/events/bolshoy-den-improvizats" target="_blank" rel="noopener" data-buy="special">Купить за&nbsp;30&nbsp;₾</a>
       </div>
     </div>
     <p class="buy-soon" id="buy-soon" hidden>Онлайн-продажа билетов откроется совсем скоро.</p>
@@ -786,7 +786,8 @@ footer .wrap{border-top:0;padding-top:0}
   });
 
   /* ticket links: external sale site. Fill in the URLs; while empty, buttons lead to the tickets block. */
-  var TICKETS = { all: '', special: '', s1: '', s2: '', s3: '' };
+  var SALE = 'https://show4me.com/events/bolshoy-den-improvizats';
+  var TICKETS = { all: SALE, special: SALE, s1: SALE, s2: SALE, s3: SALE };
   var anyUrl = false;
   document.querySelectorAll('[data-buy]').forEach(function (a) {
     var u = TICKETS[a.getAttribute('data-buy')];
