@@ -441,7 +441,8 @@ footer .wrap{padding-top:28px;padding-bottom:40px}
 .theme-sw{flex-wrap:wrap;max-width:calc(100vw - 32px)}
 @media (max-width:640px){.theme-sw{left:8px;right:8px;bottom:84px;justify-content:center;padding:4px 6px}.theme-sw .nm,.theme-sw .lb{display:none}}
 /* four big windows */
-#grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){#grid{grid-template-columns:repeat(2,minmax(0,1fr))}#grid .tile{order:var(--o)}}
 #grid .phr{font-size:clamp(14px,2.3vw,32px);padding:0 10%}
 #grid .you{font-size:clamp(13px,2vw,28px);inset:12px}
 #grid .tp{font-size:clamp(10px,1.1vw,15px);padding:3px 10px;top:10px;right:10px}
@@ -827,20 +828,23 @@ main{overflow-x:clip}
   all('[data-set-cur]', function (b) { b.addEventListener('click', function () { cur = b.getAttribute('data-set-cur'); try { localStorage.setItem('pbo-cur', cur); } catch (e) {} applyCur(); }); });
   applyCur();
 
-  /* ---------- 9 windows ---------- */
+  /* ---------- 6 windows ---------- */
   var phrases = ['Зритель из другой страны — в первом ряду', 'Сцена, до которой не нужно лететь', 'Играем из своей комнаты — и это часть истории', 'Камера видит то, что не видно из зала', 'Одна история — много часовых поясов', 'Можно прийти в тапочках. Чувства — настоящие', 'Свои люди — даже на другом конце света'];
   var people = [
-    { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'media/mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными' },
-    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'media/sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем' },
-    { kind: 'you', role: 'Вы' },
-    { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar' }
+    { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'media/mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными', o: 1 },
+    { kind: 'vid', role: 'Михаил', city: 'Батуми', tz: 'Asia/Tbilisi', vid: 'media/mikhail_hands.mp4', poster: 'media/mikhail_hands_poster.jpg', pos: '70% 50%', o: 3 },
+    { kind: 'vid', role: 'Сандра', city: 'Монтевидео', tz: 'America/Montevideo', vid: 'media/sandra_hands.mp4', poster: 'media/sandra_hands_poster.jpg', pos: '30% 50%', o: 4 },
+    { kind: 'you', role: 'Вы', o: 5 },
+    { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar', o: 6 },
+    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'media/sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем', o: 2 }
   ];
   var grid = document.getElementById('grid');
   var refs = people.map(function (p, i) {
     var t = document.createElement('div');
     t.className = 'tile' + (p.speaker ? ' speaking' : '');
+    if (p.o) t.style.setProperty('--o', p.o);
     var h = '';
-    if (p.kind === 'vid') h = '<video data-auto src="' + p.vid + '" poster="' + p.poster + '" autoplay muted loop playsinline preload="metadata" aria-label="' + esc(p.role) + ' в окне Zoom"></video>';
+    if (p.kind === 'vid') h = '<video data-auto src="' + p.vid + '" poster="' + p.poster + '" autoplay muted loop playsinline preload="metadata" style="object-position:' + (p.pos || '50% 50%') + '" aria-label="' + esc(p.role) + ': руки тянутся навстречу в окне Zoom"></video>';
     if (p.kind === 'img') h = '<img src="' + p.img + '" alt="' + esc(p.alt) + '" style="object-position:' + p.pos + '">';
     if (p.kind === 'phrase') h = '<p class="phr"></p>';
     if (p.kind === 'you') h = '<a class="you" href="#join"><b>+</b>Здесь может быть ваша история</a>';
@@ -851,6 +855,9 @@ main{overflow-x:clip}
     grid.appendChild(t);
     return { el: t, p: p, pill: t.querySelector('.tp'), phr: t.querySelector('.phr'), i: i };
   });
+  // the two hand windows play in sync
+  var duet = grid.querySelectorAll('video[data-auto]');
+  if (duet.length === 2) setInterval(function () { var a = duet[0], b = duet[1]; if (!a.paused && Math.abs(a.currentTime - b.currentTime) > 0.12) b.currentTime = a.currentTime; if (a.paused !== b.paused) { if (a.paused) b.pause(); else b.play().catch(function () {}); } }, 400);
   var tick = 0;
   function update() {
     var now = new Date();
