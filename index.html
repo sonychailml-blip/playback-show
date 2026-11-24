@@ -441,7 +441,8 @@ footer .wrap{padding-top:28px;padding-bottom:40px}
 .theme-sw{flex-wrap:wrap;max-width:calc(100vw - 32px)}
 @media (max-width:640px){.theme-sw{left:8px;right:8px;bottom:84px;justify-content:center;padding:4px 6px}.theme-sw .nm,.theme-sw .lb{display:none}}
 /* four big windows */
-#grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:960px;margin:0 auto}
+#grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:1180px){.stg2{max-width:1132px;margin-left:auto;margin-right:auto}}
 @media (max-width:760px){#grid{grid-template-columns:repeat(2,minmax(0,1fr))}#grid .tile{order:var(--o)}}
 #grid .phr{font-size:clamp(14px,2.3vw,32px);padding:0 10%}
 #grid .you{font-size:clamp(13px,2vw,28px);inset:12px}
