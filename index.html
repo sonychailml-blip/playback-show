@@ -441,7 +441,7 @@ footer .wrap{padding-top:28px;padding-bottom:40px}
 .theme-sw{flex-wrap:wrap;max-width:calc(100vw - 32px)}
 @media (max-width:640px){.theme-sw{left:8px;right:8px;bottom:84px;justify-content:center;padding:4px 6px}.theme-sw .nm,.theme-sw .lb{display:none}}
 /* four big windows */
-#grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+#grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:960px;margin:0 auto}
 @media (max-width:760px){#grid{grid-template-columns:repeat(2,minmax(0,1fr))}#grid .tile{order:var(--o)}}
 #grid .phr{font-size:clamp(14px,2.3vw,32px);padding:0 10%}
 #grid .you{font-size:clamp(13px,2vw,28px);inset:12px}
@@ -828,15 +828,13 @@ main{overflow-x:clip}
   all('[data-set-cur]', function (b) { b.addEventListener('click', function () { cur = b.getAttribute('data-set-cur'); try { localStorage.setItem('pbo-cur', cur); } catch (e) {} applyCur(); }); });
   applyCur();
 
-  /* ---------- 6 windows ---------- */
+  /* ---------- 4 windows ---------- */
   var phrases = ['Зритель из другой страны — в первом ряду', 'Сцена, до которой не нужно лететь', 'Играем из своей комнаты — и это часть истории', 'Камера видит то, что не видно из зала', 'Одна история — много часовых поясов', 'Можно прийти в тапочках. Чувства — настоящие', 'Свои люди — даже на другом конце света'];
   var people = [
-    { kind: 'img', role: 'Михаил · живая музыка', city: 'Батуми', tz: 'Asia/Tbilisi', eq: true, img: 'media/mikhail_live.jpg', pos: '50% 40%', alt: 'Михаил Чайлахян с гитарой и клавишными', o: 1 },
-    { kind: 'vid', role: 'Актёр', tz: 'Asia/Tbilisi', vid: 'media/mikhail_hands.mp4', poster: 'media/mikhail_hands_poster.jpg', pos: '70% 50%', o: 3 },
-    { kind: 'vid', role: 'Актриса', tz: 'America/Montevideo', vid: 'media/sandra_hands.mp4', poster: 'media/sandra_hands_poster.jpg', pos: '30% 50%', o: 4 },
-    { kind: 'you', role: 'Вы', o: 5 },
-    { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar', o: 6 },
-    { kind: 'img', role: 'Сандра · ведущая', city: 'Монтевидео', tz: 'America/Montevideo', img: 'media/sandra_heart.jpg', pos: '50% 50%', alt: 'Сандра Розанова складывает руки сердцем', o: 2 }
+    { kind: 'vid', role: 'Актёр', tz: 'Asia/Tbilisi', vid: 'media/mikhail_hands.mp4', poster: 'media/mikhail_hands_poster.jpg', pos: '70% 50%', o: 1 },
+    { kind: 'vid', role: 'Актриса', tz: 'America/Montevideo', vid: 'media/sandra_hands.mp4', poster: 'media/sandra_hands_poster.jpg', pos: '30% 50%', o: 2 },
+    { kind: 'you', role: 'Вы', o: 3 },
+    { kind: 'phrase', role: 'Зритель', city: 'Бали', tz: 'Asia/Makassar', o: 4 },
   ];
   var grid = document.getElementById('grid');
   var refs = people.map(function (p, i) {
