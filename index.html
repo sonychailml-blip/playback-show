@@ -572,7 +572,7 @@ main{overflow-x:clip}
       <h2>12 встреч в Zoom — от первой игры до своего выступления</h2>
       <ul class="facts">
         <li><b>с 7 декабря</b>старт курса</li>
-        <li><b>по понедельникам</b>16:00 по Москве · у вас <span data-course-local>16:00</span></li>
+        <li><b>по понедельникам</b>13:00 UTC · у вас <span data-course-local>16:00</span></li>
         <li><b>1,5 часа</b>каждая встреча, раз в неделю</li>
         <li><b>выступление</b>для зрителей в финале</li>
       </ul>
@@ -584,7 +584,7 @@ main{overflow-x:clip}
     <div class="off-intro" data-r style="--d:.12s">
       <p class="s">Не уверены? Сначала попробуйте</p>
       <h3>Вводное занятие · 30 ноября</h3>
-      <p>16:00 по Москве · у вас <strong data-intro-local>16:00</strong> · 1,5 часа в Zoom. Опыт не нужен.</p>
+      <p>13:00 UTC · у вас <strong data-intro-local>16:00</strong> · 1,5 часа в Zoom. Опыт не нужен.</p>
       <p class="intro-price"><span data-price="1000|10"></span></p>
       <p class="small">Если после него запишетесь на курс до 7 декабря, эта сумма вычитается из стоимости курса.</p>
       <div class="off-row"><a class="btn arrow" href="#join" data-pick="intro">Записаться на вводное<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F0F0F" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><span class="chip k" data-countdown hidden></span></div>
@@ -612,7 +612,7 @@ main{overflow-x:clip}
 </section>
 
 <section aria-label="Во сколько занятия в городах участников">
-  <div class="wrap mq-head"><h2 data-r>Одна встреча — разные часовые пояса</h2><p data-r style="--d:.1s">По понедельникам в 16:00 по Москве. У кого-то утро, у кого-то вечер. У вас это <strong data-course-local>16:00</strong>.</p></div>
+  <div class="wrap mq-head"><h2 data-r>Одна встреча — разные часовые пояса</h2><p data-r style="--d:.1s">По понедельникам в 13:00 UTC. У кого-то утро, у кого-то вечер. У вас это <strong data-course-local>16:00</strong>.</p></div>
   <div class="marquee"><div class="track" id="track"></div></div>
 </section>
 
@@ -620,7 +620,7 @@ main{overflow-x:clip}
   <p class="kick" data-r>02 · Программа</p>
   <div class="head-row">
     <h2 class="h2" data-r>Что будет на курсе</h2>
-    <p class="lead" data-r>12 встреч по 1,5 часа, раз в неделю по понедельникам, с 7 декабря. Время — 16:00 по Москве, у вас это <strong data-course-local>16:00</strong>. В группе до 10 человек — так каждый успевает и рассказать свою историю, и сыграть чужую.</p>
+    <p class="lead" data-r>12 встреч по 1,5 часа, раз в неделю по понедельникам, с 7 декабря. Время — 13:00 UTC, у вас это <strong data-course-local>16:00</strong>. В группе до 10 человек — так каждый успевает и рассказать свою историю, и сыграть чужую.</p>
   </div>
   <div class="roles-mini" data-r>
     <p>За курс вы побываете в каждой роли:</p>
@@ -727,7 +727,7 @@ main{overflow-x:clip}
       <p class="q">Начните с вводного занятия — или сразу записывайтесь на курс.</p>
       <fieldset class="opts">
         <legend>Куда записаться</legend>
-        <label class="opt"><input type="radio" name="what" value="intro" checked><span><b>Вводное занятие · 30 ноября</b><small>16:00 по Москве · у вас <span data-intro-local>16:00</span> · <span data-price="1000|10"></span></small></span></label>
+        <label class="opt"><input type="radio" name="what" value="intro" checked><span><b>Вводное занятие · 30 ноября</b><small>13:00 UTC · у вас <span data-intro-local>16:00</span> · <span data-price="1000|10"></span></small></span></label>
         <label class="opt"><input type="radio" name="what" value="course"><span><b>Курс целиком · с 7 декабря</b><small>12 встреч одним платежом · группа до 10 человек · <span data-price-now></span></small></span></label>
         <label class="opt"><input type="radio" name="what" value="monthly"><span><b>Курс с оплатой по месяцам</b><small>12 встреч · 3 × <span data-price="9500|95"></span>: в декабре, январе и феврале</small></span></label>
       </fieldset>
@@ -789,7 +789,7 @@ main{overflow-x:clip}
 <script src="js/land.js"></script>
 <script>
 (function () {
-  var INTRO = new Date('2026-11-30T13:00:00Z');   // 16:00 Moscow
+  var INTRO = new Date('2026-11-30T13:00:00Z');   // 13:00 UTC
   var MSK_HOUR_UTC = 13;
   var HM = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' };
   var DM = { weekday: 'short', day: 'numeric', month: 'short' };
@@ -942,7 +942,7 @@ main{overflow-x:clip}
   prog.forEach(function (r, i) {
     if (r[0] === '2027-01-11') html += '<li class="brk">4 января — перерыв на праздники</li>';
     var d = new Date(r[0] + 'T' + (MSK_HOUR_UTC < 10 ? '0' : '') + MSK_HOUR_UTC + ':00:00Z');
-    html += '<li' + (r[3] ? ' class="' + r[3] + '"' : '') + ' data-r><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="d">' + fmt(d, 'Europe/Moscow', DAY) + '</span><h3>' + esc(r[1]) + '</h3><p>' + esc(r[2]) + '</p></li>';
+    html += '<li' + (r[3] ? ' class="' + r[3] + '"' : '') + ' data-r><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="d">' + fmt(d, 'UTC', DAY) + '</span><h3>' + esc(r[1]) + '</h3><p>' + esc(r[2]) + '</p></li>';
   });
   var progEl = document.getElementById('prog'); if (progEl) progEl.innerHTML = html;
 
